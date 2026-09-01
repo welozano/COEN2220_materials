@@ -423,7 +423,7 @@ Filtrando los que son solo valores simples (título, autor, ISBN, nombre, númer
 <details>
 <summary>Ver una posible respuesta</summary>
 
-Candidatos a clase: **Restaurant, Order, Dish, Table** (quizás). *Nombre* y *precio* son atributos simples de `Dish`, no clases propias. `Order` sería responsable de saber qué platos contiene y calcular el total (incluyendo el cargo de servicio) — una buena pregunta de seguimiento para tus estudiantes: ¿el cálculo del 10% debería ser responsabilidad de `Order` o de `Restaurant`? No hay una única respuesta correcta — es exactamente el tipo de decisión de diseño que van a enfrentar en el proyecto.
+Candidatos a clase: **Restaurant, Order, Dish, Table** (quizás). *Nombre* y *precio* son atributos simples de `Dish`, no clases propias. `Order` sería responsable de saber qué platos contiene y calcular el total (incluyendo el cargo de servicio) — una buena pregunta de seguimiento: ¿el cálculo del 10% debería ser responsabilidad de `Order` o de `Restaurant`? No hay una única respuesta correcta — es exactamente el tipo de decisión de diseño que van a enfrentar en el proyecto.
 
 </details>
 
