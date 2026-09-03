@@ -18,7 +18,7 @@ Al finalizar este laboratorio, el estudiante podrá:
 
 ---
 
-## Parte 0 — Preparar la Carpeta y el Repositorio (10 min)
+## Parte A — Preparar la Carpeta y el Repositorio (10 min)
 
 > ⚠️ **Este paso es el que más se presta a error — léelo con cuidado antes de hacer clic en nada.**
 
@@ -65,19 +65,25 @@ restaurant_design
 
 ---
 
-## Parte 1 — Ejemplo Guiado, Completo: la clase `Book` (20 min)
+## Parte B — Ejemplo Guiado, Completo: la clase `Book` (20 min)
 
-Este bloque está **completamente resuelto** — es el patrón modelo que van a replicar en la Parte 2. Léanlo con cuidado antes de avanzar, no solo lo copien.
+### Contexto
 
-Crea `book.cpp`:
+Recuerda el escenario de la biblioteca que trabajamos en la lecture (Parte 7 — identificar clases): una biblioteca presta libros a estudiantes, cada libro tiene título/autor/ISBN, y hay que saber si está prestado o no. `Book` es exactamente la clase que identificamos ahí — hoy la van a construir de verdad, y en el resto del semestre va a reaparecer como pieza base cuando trabajen con colecciones de objetos (arrays de objetos, y más adelante, estructuras de datos).
+
+Este bloque está **completamente resuelto** — es el patrón modelo que van a replicar en la Parte C con `Student`. Pero **no lo peguen y corran de una vez**: lo vamos a construir en 3 pasos, compilando y observando el resultado en cada uno, para que entiendan qué hace cada pieza antes de verla toda junta.
+
+### Paso 1 — Datos, constructores, y getters
+
+Crea `book.cpp` con este contenido. Fíjate que las secciones marcadas `STEP 2` y `STEP 3` están **comentadas** — todavía no las actives.
 
 ```cpp
 /*
- * Curso: COEN 2220 - Programming 2
- * Nombre: [Tu Nombre]
- * Lab: Lab 3 - Object-Oriented Programming, Parte 1
- * Descripcion: Ejemplo guiado - clase Book completa
- * Fecha de entrega: [Fecha]
+ * Course: COEN 2220 - Programming 2
+ * Name: [Your Name]
+ * Lab: Lab 3 - Object-Oriented Programming, Part 1
+ * Description: Guided example - the Book class
+ * Due date: [Date]
  */
 
 #include <iostream>
@@ -87,13 +93,21 @@ using namespace std;
 class Book
 {
     private:
+        // Everything a Book needs to "know" about itself.
+        // All private: nothing outside this class can touch these
+        // directly - that's the point of encapsulation.
         string title;
         string author;
         string isbn;
         bool   isCheckedOut;
 
     public:
-        // Default constructor
+        // --- STEP 1: constructors + getters ---
+
+        // Default constructor: runs automatically when you write
+        // `Book b;` with no arguments. Strings default to "" on their
+        // own, but isCheckedOut (a bool) would start as unpredictable
+        // garbage without this - so we set it explicitly to false.
         Book() {
             title = "";
             author = "";
@@ -101,15 +115,35 @@ class Book
             isCheckedOut = false;
         }
 
-        // Constructor with parameters
+        // Parameterized constructor: lets us create a fully-formed
+        // Book in one line, instead of creating an empty one and then
+        // calling setters one at a time. This is the one we'll
+        // actually use in main() below.
         Book(string t, string a, string i) {
             title = t;
             author = a;
             isbn = i;
-            isCheckedOut = false;
+            isCheckedOut = false;   // a brand-new book always starts available
         }
 
-        // Setters (with light validation)
+        // Getters: marked const because reading a value should never
+        // change the object. The compiler enforces this - if you
+        // accidentally wrote code in here that modified a member, it
+        // wouldn't compile.
+        string getTitle() const { return title; }
+        string getAuthor() const { return author; }
+        string getIsbn() const { return isbn; }
+        bool   getIsCheckedOut() const { return isCheckedOut; }
+
+        void printInfo() const {
+            cout << "Title:  " << title << "\n"
+                 << "Author: " << author << "\n"
+                 << "ISBN:   " << isbn << "\n"
+                 << "Status: " << (isCheckedOut ? "Checked out" : "Available") << "\n";
+        }
+
+        // --- STEP 2: setters (uncomment the /* ... */ block below when instructed) ---
+        /*
         void setTitle(string t) {
             if (!t.empty())
                 title = t;
@@ -119,14 +153,10 @@ class Book
             if (!a.empty())
                 author = a;
         }
+        */
 
-        // Getters
-        string getTitle() const { return title; }
-        string getAuthor() const { return author; }
-        string getIsbn() const { return isbn; }
-        bool   getIsCheckedOut() const { return isCheckedOut; }
-
-        // Behavior
+        // --- STEP 3: behavior (uncomment the /* ... */ block below when instructed) ---
+        /*
         void checkOut() {
             if (!isCheckedOut) {
                 isCheckedOut = true;
@@ -144,31 +174,28 @@ class Book
                 cout << "\"" << title << "\" was not checked out.\n";
             }
         }
-
-        void printInfo() const {
-            cout << "Title:  " << title << "\n"
-                 << "Author: " << author << "\n"
-                 << "ISBN:   " << isbn << "\n"
-                 << "Status: " << (isCheckedOut ? "Checked out" : "Available") << "\n";
-        }
+        */
 };
 
 int main() {
+    // Using the parameterized constructor - real-looking but dummy data.
     Book b1("Clean Code", "Robert C. Martin", "978-0132350884");
 
     cout << "--- Initial state ---\n";
     b1.printInfo();
 
-    cout << "\n--- Checking out ---\n";
-    b1.checkOut();
-    b1.checkOut();   // try again - should say it's already out
+    // --- STEP 2 main() code goes here later ---
 
-    cout << "\n--- Returning ---\n";
-    b1.returnBook();
-    b1.returnBook(); // try again - should say it wasn't out
+    // --- STEP 3 main() code goes here later ---
 
     return 0;
 }
+```
+
+Compila y corre:
+```bash
+g++ book.cpp -o book
+./book
 ```
 
 **Qué deberías ver:**
@@ -178,40 +205,106 @@ Title:  Clean Code
 Author: Robert C. Martin
 ISBN:   978-0132350884
 Status: Available
-
---- Checking out ---
-"Clean Code" is now checked out.
-"Clean Code" is already checked out.
-
---- Returning ---
-"Clean Code" has been returned.
-"Clean Code" was not checked out.
 ```
 
-**Observen el patrón que van a replicar:**
-1. Member variables privadas, agrupadas arriba.
-2. Constructor default + constructor con parámetros (sobrecarga).
-3. Setters con validación mínima, getters marcados `const`.
-4. Métodos de comportamiento (`checkOut`/`returnBook`) que cambian el estado interno y dan retroalimentación.
-5. Un método `printInfo()` para mostrar el objeto completo de forma consistente.
+**Antes de seguir, revisa:** ¿por qué `Status` dice "Available" si nunca lo asignamos explícitamente en `main()`?
 
-💾 **Commit:** `"Ejemplo guiado: clase Book"`
+<details>
+<summary>Ver respuesta</summary>
+
+El constructor parametrizado lo fija a `false` internamente — `isCheckedOut = false;` — nunca queda a la suerte.
+
+</details>
+
+### Paso 2 — Activar los setters
+
+Descomenta el bloque `STEP 2`: quita únicamente las líneas `/*` y `*/` que envuelven el código (deja la línea `// --- STEP 2: setters ---` tal cual, esa sí es un comentario válido por sí sola y no necesita tocarse). Luego, dentro de `main()`, reemplaza la línea `// --- STEP 2 main() code goes here later ---` con:
+
+```cpp
+    cout << "\n--- After setTitle/setAuthor ---\n";
+    b1.setTitle("Clean Code (2nd Edition)");
+    b1.setAuthor("");   // empty string - should be REJECTED
+    b1.printInfo();
+```
+
+Compila y corre otra vez.
+
+**Qué deberías ver (agregado al final de la salida anterior):**
+```
+--- After setTitle/setAuthor ---
+Title:  Clean Code (2nd Edition)
+Author: Robert C. Martin
+ISBN:   978-0132350884
+Status: Available
+```
+
+**Antes de seguir, revisa:** el `Author` **no cambió**, aunque llamamos `setAuthor("")`. ¿Por qué?
+
+<details>
+<summary>Ver respuesta</summary>
+
+La validación `if (!a.empty())` rechaza el string vacío — el setter simplemente no hace nada cuando el argumento no es válido, sin necesidad de un mensaje de error para este caso.
+
+</details>
+
+### Paso 3 — Activar el comportamiento (`checkOut`/`returnBook`)
+
+Descomenta el bloque `STEP 3` (mismo procedimiento: solo quita `/*` y `*/`, deja la etiqueta `// --- STEP 3 ---` intacta). Luego, reemplaza `// --- STEP 3 main() code goes here later ---` en `main()` con:
+
+```cpp
+    cout << "\n--- Checking out ---\n";
+    b1.checkOut();
+    b1.checkOut();   // try again - should say it's already out
+
+    cout << "\n--- Returning ---\n";
+    b1.returnBook();
+    b1.returnBook(); // try again - should say it wasn't out
+```
+
+Compila y corre una última vez.
+
+**Qué deberías ver (agregado al final):**
+```
+--- Checking out ---
+"Clean Code (2nd Edition)" is now checked out.
+"Clean Code (2nd Edition)" is already checked out.
+
+--- Returning ---
+"Clean Code (2nd Edition)" has been returned.
+"Clean Code (2nd Edition)" was not checked out.
+```
+
+**Observen el patrón completo que van a replicar en la Parte C:**
+1. Member variables privadas, agrupadas arriba, con un comentario explicando qué representan como grupo.
+2. Constructor default + constructor con parámetros (sobrecarga) — cada uno con un comentario explicando *cuándo* se usaría.
+3. Getters marcados `const`, con un comentario explicando por qué.
+4. Setters con validación — el comentario explica *qué* se está validando y *por qué*.
+5. Métodos de comportamiento que cambian el estado interno y dan retroalimentación con `cout`.
+6. Un método `printInfo()` para mostrar el objeto completo de forma consistente.
+
+💾 **Commit:** `"Guided example: Book class"`
 
 ---
 
-## Parte 2 — Ejercicio TODO: la clase `Student` (25 min)
+## Parte C — Ejercicio TODO: la clase `Student` (25 min)
+
+### Contexto
+
+`Student` es la otra clase que identificamos en el mismo escenario de biblioteca de la lecture (Parte 7), junto a `Book`. En un sistema de biblioteca real, un `Student` es quien pide prestado un `Book` — esa conexión entre las dos clases (un estudiante "tiene" libros prestados) es exactamente el tipo de relación que van a formalizar más adelante en el curso (aggregation, Semana 4). Por ahora, `Student` vive de forma independiente, con el mismo patrón interno que `Book`: datos privados, constructores, getters/setters validados, y un destructor.
 
 Ahora te toca a ti, siguiendo el mismo patrón de `Book`, pero **sin la lógica ya resuelta en los comentarios** — solo la estructura.
+
+El archivo `student.cpp` de abajo tiene TODOs marcados con tres etiquetas distintas: `(Parte C)`, `(Parte D)`, y `(Parte E)` — corresponden a las tres secciones de este lab en las que vas a completar `Student` por partes. **Ahora mismo, en esta sección, resuelve únicamente los TODO marcados `(Parte C)`.** Ignora por completo los marcados `(Parte D)` y `(Parte E)` — no los borres ni los completes todavía, simplemente déjalos ahí; les toca su propia sección más adelante.
 
 Crea `student.cpp`:
 
 ```cpp
 /*
- * Curso: COEN 2220 - Programming 2
- * Nombre: [Tu Nombre]
- * Lab: Lab 3 - Object-Oriented Programming, Parte 1
- * Descripcion: Clase Student - ejercicio con TODOs
- * Fecha de entrega: [Fecha]
+ * Course: COEN 2220 - Programming 2
+ * Name: [Your Name]
+ * Lab: Lab 3 - Object-Oriented Programming, Part 1
+ * Description: Student class - exercise with TODOs
+ * Due date: [Date]
  */
 
 #include <iostream>
@@ -226,36 +319,44 @@ class Student
         double gpa;
 
     public:
-        // TODO (Parte 2): Default constructor.
+        // ===== Resuelve estos TODO ahora (Parte C) =====
+
+        // TODO (Parte C): Default constructor.
         // Inicializa name a "", id a 0, gpa a 0.0
 
-        // TODO (Parte 3): Constructor with parameters (name, id, gpa).
-
-        // TODO (Parte 2): setName(string n)
+        // TODO (Parte C): setName(string n)
         // Solo asigna si n no esta vacio.
 
-        // TODO (Parte 2): setGpa(double g)
+        // TODO (Parte C): setGpa(double g)
         // Solo asigna si g esta entre 0.0 y 4.0 (inclusive).
         // Si no es valido, imprime un mensaje de error y no cambia el valor.
 
-        // TODO (Parte 2): Getters con const: getName(), getId(), getGpa()
+        // TODO (Parte C): Getters con const: getName(), getId(), getGpa()
 
-        // TODO (Parte 2): printInfo() const
+        // TODO (Parte C): printInfo() const
         // Imprime name, id, y gpa con formato similar a Book::printInfo()
 
-        // TODO (Parte 4): Destructor.
+        // ===== No los toques todavia - les toca mas adelante =====
+
+        // TODO (Parte D): Constructor with parameters (name, id, gpa).
+
+        // TODO (Parte E): Destructor.
         // Imprime un mensaje indicando que el objeto Student con ese 'name' fue destruido.
 };
 
 int main() {
-    // TODO (Parte 2): Crea un Student usando el constructor default,
+    // ===== Resuelve estos TODO ahora (Parte C) =====
+
+    // TODO (Parte C): Crea un Student usando el constructor default,
     // asigna valores con los setters, e imprime con printInfo().
 
-    // TODO (Parte 3): Crea un segundo Student usando el constructor con
-    // parametros, con datos dummy (ej. "Alice Smith", 1001, 3.7).
-
-    // TODO (Parte 2): Prueba setGpa() con un valor invalido (ej. 5.0)
+    // TODO (Parte C): Prueba setGpa() con un valor invalido (ej. 5.0)
     // y confirma que el mensaje de error aparece y el gpa no cambia.
+
+    // ===== No lo toques todavia - le toca mas adelante =====
+
+    // TODO (Parte D): Crea un segundo Student usando el constructor con
+    // parametros, con datos dummy (ej. "Alice Smith", 1001, 3.7).
 
     return 0;
 }
@@ -283,9 +384,9 @@ Sin la validación, `student.setGpa(5.0);` asignaría 5.0 sin problema — un GP
 
 ---
 
-## Parte 3 — Constructor con Parámetros (20 min)
+## Parte D — Constructor con Parámetros (20 min)
 
-Vuelve a `student.cpp` y completa el `TODO (Parte 3)`: el constructor que recibe `name`, `id`, y `gpa` directamente.
+Vuelve a `student.cpp`. Ahora sí le toca al TODO marcado `(Parte D)`: el constructor que recibe `name`, `id`, y `gpa` directamente. (Deja el TODO `(Parte E)` sin tocar todavía — es lo último que falta.)
 
 **Importante:** este constructor también debe validar el `gpa` — no le den un pase libre solo porque viene del constructor. Piensen cómo reusar la lógica de validación que ya escribieron en `setGpa` (pista: pueden llamar `setGpa(g);` *dentro* del constructor, en vez de repetir el `if`).
 
@@ -304,9 +405,9 @@ Si en algún momento cambian la regla de validación (por ejemplo, si el rango d
 
 ---
 
-## Parte 4 — Destructor (15 min)
+## Parte E — Destructor (15 min)
 
-Completa el `TODO (Parte 4)`: el destructor de `Student`, que imprime un mensaje indicando qué objeto se está destruyendo (usando su `name`).
+Completa el `TODO (Parte E)`: el destructor de `Student`, que imprime un mensaje indicando qué objeto se está destruyendo (usando su `name`). Con esto, los tres TODO de `student.cpp` quedan completos.
 
 **Antes de correr el programa, traza a mano:** con los dos objetos `Student` que ya tienes en `main()` (uno del constructor default, otro con parámetros), ¿en qué orden esperas ver los mensajes del destructor al final del programa?
 
@@ -325,17 +426,17 @@ Corre el programa y confirma que el orden real coincide con tu predicción.
 
 ---
 
-## Parte 5 — De Struct a Class (10 min)
+## Parte F — De Struct a Class (10 min)
 
 Crea `struct_vs_class.cpp` con este struct ya dado:
 
 ```cpp
 /*
- * Curso: COEN 2220 - Programming 2
- * Nombre: [Tu Nombre]
- * Lab: Lab 3 - Object-Oriented Programming, Parte 1
- * Descripcion: Convertir un struct a class con encapsulacion
- * Fecha de entrega: [Fecha]
+ * Course: COEN 2220 - Programming 2
+ * Name: [Your Name]
+ * Lab: Lab 3 - Object-Oriented Programming, Part 1
+ * Description: Converting a struct to a class with encapsulation
+ * Due date: [Date]
  */
 
 #include <iostream>
@@ -347,7 +448,7 @@ struct RectangleStruct
     double height;
 };
 
-// TODO (Parte 5): Declara e implementa RectangleClass aqui abajo,
+// TODO (Parte F): Declara e implementa RectangleClass aqui abajo,
 // convirtiendo RectangleStruct a una class con encapsulacion real:
 //   - width y height como miembros privados
 //   - setWidth(double) y setHeight(double) que solo acepten valores > 0
@@ -362,7 +463,7 @@ int main() {
     r.height = 3.0;
     cout << "Struct area (con ancho invalido): " << (r.width * r.height) << endl;
 
-    // TODO (Parte 5): Crea un RectangleClass, intenta asignarle un
+    // TODO (Parte F): Crea un RectangleClass, intenta asignarle un
     // width negativo con setWidth(), y confirma que NO se acepta
     // (el area calculada con datos validos previos, si los hubo,
     // deberia quedar intacta).
@@ -377,7 +478,7 @@ int main() {
 
 ---
 
-## Parte 6 — Diseño: Identificando Clases (10 min)
+## Parte G — Diseño: Identificando Clases (10 min)
 
 Este bloque es de **diseño**, no de lógica completa — recuerda el ejercicio de la lecture (Parte 7) sobre el restaurante. Ahora lo llevan a código real, pero solo como **esqueletos** (declaraciones de clase, sin implementación).
 
@@ -385,11 +486,11 @@ Crea `restaurant_design.cpp`:
 
 ```cpp
 /*
- * Curso: COEN 2220 - Programming 2
- * Nombre: [Tu Nombre]
- * Lab: Lab 3 - Object-Oriented Programming, Parte 1
- * Descripcion: Esqueletos de clase - diseno del caso del restaurante
- * Fecha de entrega: [Fecha]
+ * Course: COEN 2220 - Programming 2
+ * Name: [Your Name]
+ * Lab: Lab 3 - Object-Oriented Programming, Part 1
+ * Description: Class skeletons - restaurant case design
+ * Due date: [Date]
  */
 
 #include <iostream>
@@ -401,7 +502,7 @@ using namespace std;
 //  de platos, cada uno con nombre y precio. Al final, el restaurante
 //  calcula el total del pedido, incluyendo un cargo de servicio del 10%."
 
-// TODO (Parte 6): Declara la clase Dish.
+// TODO (Parte G): Declara la clase Dish.
 //   - Miembros privados que necesita saber un plato (piensa en la
 //     descripcion: nombre, precio).
 //   - Constructor(es) que consideres necesarios.
@@ -409,7 +510,7 @@ using namespace std;
 //   No hace falta implementar el cuerpo de cada funcion - un prototipo
 //   dentro de la clase es suficiente para este ejercicio.
 
-// TODO (Parte 6): Declara la clase Order.
+// TODO (Parte G): Declara la clase Order.
 //   - Piensa: ¿como va a guardar "una lista de platos"? (una pista:
 //     un array de Dish de tamano fijo es aceptable por ahora - las
 //     estructuras de datos que permiten listas de tamano variable
@@ -418,7 +519,7 @@ using namespace std;
 //     de cargo de servicio - decide tu si ese calculo vive aqui o
 //     en Restaurant (no hay una unica respuesta correcta).
 
-// TODO (Parte 6, opcional): Declara Restaurant si decidiste que el
+// TODO (Parte G, opcional): Declara Restaurant si decidiste que el
 // calculo del cargo de servicio le pertenece a esta clase en vez de
 // a Order.
 
@@ -433,7 +534,7 @@ int main() {
 <details>
 <summary>Para practicar por tu cuenta: ¿por que no se pide implementacion completa aqui?</summary>
 
-Porque el objetivo de este bloque es practicar el *proceso de diseño* (identificar clases, decidir responsabilidades) — no la mecánica de escribir código, que ya practicaste a fondo en las Partes 1-4. Esta misma pregunta de diseño (¿dónde vive esta responsabilidad?) va a reaparecer, en una forma más compleja, cuando definan la arquitectura de su proyecto final.
+Porque el objetivo de este bloque es practicar el *proceso de diseño* (identificar clases, decidir responsabilidades) — no la mecánica de escribir código, que ya practicaste a fondo en las Partes B-E. Esta misma pregunta de diseño (¿dónde vive esta responsabilidad?) va a reaparecer, en una forma más compleja, cuando definan la arquitectura de su proyecto final.
 
 </details>
 
@@ -444,7 +545,7 @@ Porque el objetivo de este bloque es practicar el *proceso de diseño* (identifi
 ## Entregable del laboratorio
 
 Envía al profesor el enlace de tu repositorio `lab3-oop` en GitHub, con:
-- Al menos **6 commits** visibles (uno por cada parte con contenido: 0/1 combinados y 1 a 6).
+- Al menos **6 commits** visibles (uno por cada parte con contenido: A/B combinados y C a G).
 - Un `.gitignore` funcionando (ningún ejecutable visible en el repo).
 - Los archivos: `book.cpp` (dado, sin modificar), `student.cpp` (completo, todos los TODO resueltos), `struct_vs_class.cpp` (completo), y `restaurant_design.cpp` (esqueletos + comentario de decisión).
 - Cada archivo con su encabezado estándar completado (nombre y fecha reales, no los placeholders).
