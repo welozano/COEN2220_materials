@@ -34,7 +34,7 @@ Repositorio con los materiales del curso (lectures y laboratorios), en C++. Cont
 | --- | ------ | ------------------------------------------------------------------ | -------------- |
 | 1  | 1      | Git y GitHub desde la consola | [Lab1 - Git-GitHub, Consola](labs/Lab1_Git_GitHub_Consola.md) |
 | 2  | 2      | IDE (VS Code + GitHub) + Pointers y arrays dinámicos | [Lab2 - IDE, Pointers.md](labs/Lab2_IDE_Pointers.md) |
-| 3  | 3      | OOP — parte 1 (clases, objetos, constructores) | [Lab3 - OOP Part 1](Labs/lab3_OOP_Parte1.md) |
+| 3  | 3      | OOP — parte 1 (clases, objetos, constructores) | [Lab3 - OOP Part 1](labs/Lab3_OOP_Parte1.md) |
 | 4  | 4      | OOP — parte 2 (inheritance, polymorphism)                          | *(pendiente)* |
 | 5  | 5      | Proyecto — Kickoff (equipos + propuesta; branching en equipo, opcional) | *(pendiente)* |
 | 6  | 6      | Templates (clases genéricas)                                       | *(pendiente)* |
