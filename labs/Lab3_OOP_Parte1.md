@@ -61,7 +61,7 @@ restaurant_design
 .vscode/
 ```
 
-💾 **Commit inicial:** `"Setup inicial + gitignore"`, luego **Publish Branch**.
+💾 **Buen momento para el commit** — tienes un punto de partida limpio (carpeta correcta, repo inicializado, `.gitignore` funcionando) antes de escribir ninguna clase todavía. Commit: `"Setup inicial + gitignore"`, luego **Publish Branch**.
 
 ---
 
@@ -282,7 +282,7 @@ Compila y corre una última vez.
 5. Métodos de comportamiento que cambian el estado interno y dan retroalimentación con `cout`.
 6. Un método `printInfo()` para mostrar el objeto completo de forma consistente.
 
-💾 **Commit:** `"Guided example: Book class"`
+💾 **Buen momento para el commit** — acabas de terminar una clase completa y funcional. Este es el patrón que vas a repetir el resto del semestre: **haz commit cuando termines una unidad de trabajo coherente que compila y corre**, no a mitad de algo roto. El mensaje `"Guided example: Book class"` ya sigue una buena práctica: describe *qué* se agregó, en pocas palabras, no "cambios" o "avance" (mensajes así no dicen nada útil si alguien —incluyéndote a ti mismo en el futuro— revisa el historial del repo buscando cuándo se agregó algo específico).
 
 ---
 
@@ -380,7 +380,7 @@ Sin la validación, `student.setGpa(5.0);` asignaría 5.0 sin problema — un GP
 
 </details>
 
-💾 **Commit:** `"Student: constructor default, setters, getters, printInfo"`
+💾 **Buen momento para el commit** — `Student` ya tiene una primera versión funcional (compila, corre, y ya viste el rechazo de `setGpa` en acción), aunque todavía le falten el constructor con parámetros y el destructor. Commit: `"Student: constructor default, setters, getters, printInfo"`.
 
 ---
 
@@ -401,11 +401,15 @@ Si en algún momento cambian la regla de validación (por ejemplo, si el rango d
 
 </details>
 
-💾 **Commit:** `"Student: constructor con parametros"`
+💾 **Buen momento para el commit** — agregaste una funcionalidad completa y ya probada (el constructor con parámetros) sobre una base que ya funcionaba. Commit: `"Student: constructor con parametros"`.
 
 ---
 
 ## Parte E — Destructor (15 min)
+
+**Recordatorio rápido antes de escribir código** (de la lecture, Parte 5): un destructor se ejecuta automáticamente cuando el objeto se destruye — sale de scope, o se hace `delete` sobre un pointer que lo apunta. Si no escriben ninguno, C++ genera uno automáticamente que no hace nada.
+
+Para `Student` tal como está hoy (sin memoria dinámica adentro), no tener destructor no rompe nada — no hay nada que limpiar todavía. **Entonces, ¿por qué molestarse en escribirlo ahora?** Por costumbre deliberada: dentro de pocas semanas (Linked Lists, Semana 9) van a construir clases que sí reservan memoria dinámica internamente, y ahí un destructor faltante o mal escrito sí causa memory leaks reales. Practicar el patrón ahora, con una clase simple donde el riesgo es bajo, es más fácil que aprenderlo por primera vez en una clase compleja donde un error es más difícil de rastrear.
 
 Completa el `TODO (Parte E)`: el destructor de `Student`, que imprime un mensaje indicando qué objeto se está destruyendo (usando su `name`). Con esto, los tres TODO de `student.cpp` quedan completos.
 
@@ -422,7 +426,7 @@ Corre el programa y confirma que el orden real coincide con tu predicción.
 
 **Esto es lo que debes entregar en esta parte:** el destructor implementado e imprimiendo un mensaje identificable por objeto, con la traza a mano confirmada contra la salida real.
 
-💾 **Commit:** `"Student: destructor"`
+💾 **Buen momento para el commit** — `Student` queda completo (los tres TODO resueltos), un buen punto de cierre para este archivo antes de pasar a algo distinto. Commit: `"Student: destructor"`.
 
 ---
 
@@ -463,7 +467,7 @@ int main() {
     r.height = 3.0;
     cout << "Struct area (con ancho invalido): " << (r.width * r.height) << endl;
 
-    // TODO (Parte F): Crea un RectangleClass, intenta asignarle un
+    // TODO (Parte F): Crea un objeto de tipo RectangleClass, intenta asignarle un
     // width negativo con setWidth(), y confirma que NO se acepta
     // (el area calculada con datos validos previos, si los hubo,
     // deberia quedar intacta).
@@ -474,13 +478,35 @@ int main() {
 
 **Esto es lo que debes entregar en esta parte:** `RectangleClass` completa, y en `main()` la prueba explícita de que un valor inválido es rechazado — no basta con que compile, tiene que demostrarse con `cout` que el rechazo realmente ocurre.
 
-💾 **Commit:** `"RectangleClass: conversion de struct a class"`
+💾 **Buen momento para el commit** — completaste la conversión y la demostraste con un caso de prueba real (el rechazo del valor negativo), no solo con código que compila. Commit: `"RectangleClass: conversion de struct a class"`.
 
 ---
 
 ## Parte G — Diseño: Identificando Clases (10 min)
 
-Este bloque es de **diseño**, no de lógica completa — recuerda el ejercicio de la lecture (Parte 7) sobre el restaurante. Ahora lo llevan a código real, pero solo como **esqueletos** (declaraciones de clase, sin implementación).
+### Contexto
+
+Este bloque es de **diseño**, no de lógica completa — recuerda el ejercicio de la lecture (Parte 7) sobre el restaurante, donde ya identificamos las clases candidatas usando el método de "sustantivos → clases, verbos → métodos". Aquí lo llevan a código real, pero solo como **esqueletos** (declaraciones de clase, sin implementación) — el objetivo es practicar el *proceso de decidir qué construir*, no la mecánica de escribirlo (eso ya lo practicaste a fondo en las Partes B-E).
+
+El escenario completo, con un poco más de detalle que en la lecture:
+
+> *Un restaurante recibe pedidos de mesas. Cada pedido tiene una lista de platos, cada uno con nombre y precio. Al final, el restaurante calcula el total del pedido, incluyendo un cargo de servicio del 10%.*
+>
+> Por ejemplo: la Mesa 5 pide una Ensalada César (\$8.50) y un Salmón a la Parrilla (\$22.00). El subtotal es \$30.50. El pedido completo, con el 10% de servicio, sale a \$33.55. Ese pedido tiene que poder crecer (agregar más platos mientras la mesa sigue pidiendo), y en algún momento alguien tiene que poder preguntarle "¿cuánto llevas hasta ahora?".
+
+### El proceso mental, paso a paso (sin resolverlo por ti)
+
+Antes de tocar el código, contesta estas preguntas en tu cabeza (o en un papel) — son el mismo tipo de pregunta que vas a tener que hacerte solo cuando diseñes el proyecto final:
+
+1. **¿Qué necesita *saber* un `Dish`, además de nombre y precio?** Piensa en el ejemplo de arriba: ¿hace falta que un `Dish` sepa a qué mesa pertenece, o eso es responsabilidad de otra clase? ¿Dos platos con el mismo nombre y precio en dos pedidos distintos son "el mismo" `Dish`, o son dos objetos independientes?
+
+2. **¿Cómo guarda `Order` "una lista de platos" si todavía no han visto estructuras de datos de tamaño variable?** (Esto lo van a resolver formalmente más adelante en el curso — por ahora, un array de tamaño fijo con un contador de cuántos espacios están realmente en uso es una solución razonable y suficiente.)
+
+3. **¿Quién calcula el 10% de servicio — `Order` o `Restaurant`?** Piénsalo así: si mañana el restaurante decide subir el cargo a 15%, o cobrar un porcentaje distinto según el tipo de mesa (interior vs. terraza, por ejemplo), ¿ese cambio debería tocar el código de `Order`, o el de `Restaurant`? No hay una única respuesta correcta — pero la pregunta de "qué cambia junto y qué cambia por separado" es exactamente el criterio que se usa en diseño real para decidir dónde vive una responsabilidad.
+
+4. **¿`Order` necesita saber a qué mesa pertenece?** Si la respuesta es sí, ¿ese dato vive en `Order`, o es más apropiado en una clase `Table` que ni siquiera pedimos que declaren hoy? (No hace falta que declaren `Table` — solo que noten que la decisión de "hasta dónde crece el diseño" también es parte del ejercicio.)
+
+Ahora sí, a los esqueletos:
 
 Crea `restaurant_design.cpp`:
 
@@ -497,27 +523,24 @@ Crea `restaurant_design.cpp`:
 #include <string>
 using namespace std;
 
-// Recordatorio del escenario (de la lecture, Parte 7):
-// "Un restaurante recibe pedidos de mesas. Cada pedido tiene una lista
-//  de platos, cada uno con nombre y precio. Al final, el restaurante
-//  calcula el total del pedido, incluyendo un cargo de servicio del 10%."
+// Reminder of the scenario (see "Contexto" above for the full version):
+// "A restaurant takes orders from tables. Each order has a list of
+//  dishes, each with a name and a price. At the end, the restaurant
+//  calculates the order total, including a 10% service charge."
 
 // TODO (Parte G): Declara la clase Dish.
-//   - Miembros privados que necesita saber un plato (piensa en la
-//     descripcion: nombre, precio).
+//   - Miembros privados que necesita saber un plato (piensa en tu
+//     respuesta a la pregunta 1 de arriba).
 //   - Constructor(es) que consideres necesarios.
 //   - Getters para sus atributos.
 //   No hace falta implementar el cuerpo de cada funcion - un prototipo
 //   dentro de la clase es suficiente para este ejercicio.
 
 // TODO (Parte G): Declara la clase Order.
-//   - Piensa: ¿como va a guardar "una lista de platos"? (una pista:
-//     un array de Dish de tamano fijo es aceptable por ahora - las
-//     estructuras de datos que permiten listas de tamano variable
-//     las van a ver mas adelante en el curso).
+//   - Como guarda la lista de platos (ver tu respuesta a la pregunta 2).
 //   - Necesita un metodo para calcular el total, incluyendo el 10%
 //     de cargo de servicio - decide tu si ese calculo vive aqui o
-//     en Restaurant (no hay una unica respuesta correcta).
+//     en Restaurant (ver tu respuesta a la pregunta 3).
 
 // TODO (Parte G, opcional): Declara Restaurant si decidiste que el
 // calculo del cargo de servicio le pertenece a esta clase en vez de
@@ -529,7 +552,7 @@ int main() {
 }
 ```
 
-**Esto es lo que debes entregar en esta parte:** las declaraciones de `Dish` y `Order` (con sus prototipos, no implementación completa), y un comentario corto explicando tu decisión sobre dónde vive el cálculo del cargo de servicio.
+**Esto es lo que debes entregar en esta parte:** las declaraciones de `Dish` y `Order` (con sus prototipos, no implementación completa), y un comentario corto explicando tu decisión sobre dónde vive el cálculo del cargo de servicio — específicamente, *por qué* elegiste esa opción, no solo cuál elegiste.
 
 <details>
 <summary>Para practicar por tu cuenta: ¿por que no se pide implementacion completa aqui?</summary>
@@ -538,7 +561,7 @@ Porque el objetivo de este bloque es practicar el *proceso de diseño* (identifi
 
 </details>
 
-💾 **Commit final:** `"Restaurant design: esqueletos de Dish y Order"`
+💾 **Buen momento para el commit final** — cierra el lab con los esqueletos de diseño y tu decisión documentada. Commit: `"Restaurant design: esqueletos de Dish y Order"`.
 
 ---
 
