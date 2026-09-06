@@ -30,3 +30,10 @@ build/
 bin/
 Debug/
 Release/
+
+# Copias locales de capitulos del libro (copyright - nunca subir)
+book_chapters/
+
+# --- Documentos internos de diseño del curso: no son para los estudiantes ---
+CONTEXT.md
+STYLE_GUIDE.md
