@@ -1,6 +1,8 @@
 # Semana 3 — Object-Oriented Programming, Parte 1: Introduction to Classes
 ## COEN 2220 — Programming 2
 
+**Instructor:** Wilson Lozano
+
 **Duración:** 170 min (sesión de 3 horas crédito nominales)
 **Precede a:** Lab 3 — OOP parte 1 (clases, objetos, constructores)
 **Lectura complementaria:** Gaddis, *Starting Out with C++*, 8va ed., Cap. 13 — secciones 13.1 a 13.9 (Identifying Classes, Objects, and Members; Class Declarations; Public/Private; Objects; Constructors; Destructors)

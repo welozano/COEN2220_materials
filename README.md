@@ -3,7 +3,7 @@
 
 Repositorio con los materiales del curso (lectures y laboratorios), en C++. Continuación directa de COEN 2210 (Introduction to Programming). Cada guía de lab está pensada para una sesión de 2 horas; cada lecture, para una sesión de 3 horas.
 
-**Textbook:** Gaddis, *Starting Out with C++: From Control Structures through Objects*, 11th Edition, Pearson, 2027. (Continuación de capítulos: 9, 13–15, 22–25.)
+**Textbook:** Gaddis, *Starting Out with C++: From Control Structures through Objects*, 8th Edition. 
 
 ---
 

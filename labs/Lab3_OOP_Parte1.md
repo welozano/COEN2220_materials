@@ -1,6 +1,8 @@
 # Lab 3 — Object-Oriented Programming, Parte 1
 ## COEN 2220 — Programming 2
 
+**Instructor:** Wilson Lozano
+
 **Duración:** 110 min (sesión de 2 horas crédito nominales)
 **Precede a:** N/A — este lab se basa en la lecture de Semana 3 (Introduction to Classes)
 **Requisitos:** Lab 1 y Lab 2 completados (Git/GitHub, `.gitignore`)
