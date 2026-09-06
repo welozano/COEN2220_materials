@@ -14,8 +14,8 @@ Repositorio con los materiales del curso (lectures y laboratorios), en C++. Cont
 | #  | Semana | Tema                                                              | Enlace         |
 | --- | ------ | ------------------------------------------------------------------ | -------------- |
 | 1  | 1      | Introducción al curso + repaso puente (structured data / file operations) | *(pendiente)* |
-| 2  | 1–2    | Pointers y memoria dinámica | [Semana1-2_Pointers_Memoria_Dinamica.md](lectures/Semana1-2_Pointers_Memoria_Dinamica.md) |
-| 3  | 3–5    | Object-Oriented Programming (clases, inheritance, polymorphism, virtual functions/interfaces) | [Semana3_OOP_Parte1_Introduction_to_Classes.md](lectures/Semana3_OOP_Parte1_Introduction_to_Classes.md) |
+| 2  | 1–2    | Pointers y memoria dinámica | [Semanas 1-2: Pointers, Memoria Dinamica](lectures/Semana1-2_Pointers_Memoria_Dinamica.md) |
+| 3  | 3–5    | Object-Oriented Programming (clases, inheritance, polymorphism, virtual functions/interfaces) | [Semana 3: OOP Parte 1](lectures/Semana3_OOP_Parte1_Introduction_to_Classes.md) <br> [Semana 4: OOP Parte 2](lectures/Semana4_OOP_Parte2_More_About_Classes.md)|
 | 4  | 5–6    | Templates                                                         | *(pendiente)* |
 | 5  | 6      | Abstract Data Types (ADT)                                         | *(pendiente)* |
 | 6  | 7      | Examen 1                                                          | *(pendiente)* |
