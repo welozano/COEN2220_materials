@@ -33,6 +33,8 @@ Release/
 
 # Copias locales de capitulos del libro (copyright - nunca subir)
 book_chapters/
+# Final projects de los estudiantes (copyright - nunca subir)
+final_project/
 
 # --- Documentos internos de diseño del curso: no son para los estudiantes ---
 CONTEXT.md
