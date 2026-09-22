@@ -172,7 +172,7 @@ La declaración `FixedCollection<int> attendanceCounts;` crea un objeto cuya col
 
 La declaración `FixedCollection<double> eventRatings;` crea otra versión de la misma idea, esta vez con `double`. No son dos objetos de exactamente el mismo tipo: uno es `FixedCollection<int>` y el otro es `FixedCollection<double>`. Ambos provienen del mismo molde, pero el compilador genera las versiones necesarias según el tipo indicado entre `< >`.
 
-> **Importante:** FixedCollection no es un objeto completo hasta que se indica un tipo. Deben escribir FixedCollection<int>, FixedCollection<double> u otro tipo válido.
+> **Importante:** FixedCollection no es un objeto completo hasta que se indica un tipo. Deben escribir `FixedCollection<int>`, `FixedCollection<double>` u otro tipo válido.
 
 <details>
 <summary>Pregunta de verificación: ¿por qué <code>count</code> sigue siendo <code>int</code> y no <code>T</code>?</summary>
