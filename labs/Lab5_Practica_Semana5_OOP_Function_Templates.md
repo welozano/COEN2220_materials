@@ -282,4 +282,4 @@ Envía al profesor el enlace de tu repositorio `lab5-week5-practice` en GitHub, 
 
 ## Próxima sesión
 
-En la Semana 6 continuarán c±on templates y comenzarán Abstract Data Types (ADT).
+En la Semana 6 continuarán con templates y comenzarán Abstract Data Types (ADT).
