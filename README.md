@@ -37,7 +37,7 @@ Repositorio con los materiales del curso (lectures y laboratorios), en C++. Cont
 | 3  | 3      | OOP — parte 1 (clases, objetos, constructores) | [Lab3 - OOP Part 1](labs/Lab3_OOP_Parte1.md) |
 | 4  | 4      | OOP — parte 2 (static members, aggregation, copies, operator overloading; preview de inheritance/polymorphism) | [Lab 4 - OOP Part 2](labs/Lab4_OOP_Parte2.md) |
 | 5  | 5      | Práctica evaluada en casa — OOP y Function Templates; sesión presencial: Project Kickoff | [Lab 5 - Práctica Semana 5](labs/Lab5_Practica_Semana5_OOP_Function_Templates.md) |
-| 6  | 6      | Templates (clases genéricas)                                       | *(pendiente)* |
+| 6  | 6      | Templates (clases genéricas)                                       | [Lab 6 - Class Templates](labs/Lab6_Class_Templates.md) |
 | 7  | 7      | ADT                                                                | *(pendiente)* |
 | 8  | 8      | Big-O / análisis de time complexity                                | *(pendiente)* |
 | 9  | 9      | Linked Lists                                                      | *(pendiente)* |
