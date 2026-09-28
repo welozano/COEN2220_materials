@@ -35,6 +35,8 @@ Release/
 book_chapters/
 # Final projects de los estudiantes (copyright - nunca subir)
 final_project/
+# Evaluaciones internas del curso — nunca subir
+evaluations/
 
 # --- Documentos internos de diseño del curso: no son para los estudiantes ---
 CONTEXT.md
