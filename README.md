@@ -18,7 +18,7 @@ Repositorio con los materiales del curso (lectures y laboratorios), en C++. Cont
 | 3  | 3–5    | Object-Oriented Programming (clases, inheritance, polymorphism, virtual functions/interfaces) | [Semana 3: OOP Parte 1](lectures/Semana3_OOP_Parte1_Introduction_to_Classes.md) <br> [Semana 4: OOP Parte 2](lectures/Semana4_OOP_Parte2_More_About_Classes.md) <br> [Semana 5: OOP Parte 3](lectures/Semana5_OOP_Parte3_Inheritance_Polymorphism_Templates.md) |
 | 4  | 5–6    | Templates                                                         | [Semana 5: Introducción a Templates](lectures/Semana5_OOP_Parte3_Inheritance_Polymorphism_Templates.md) <br> [Semana 6: Class Templates](lectures/Semana6_Templates_Class_Templates_ADT.md) |
 | 5  | 6      | Abstract Data Types (ADT)                                         | [Semana 6: Introducción a ADT](lectures/Semana6_Templates_Class_Templates_ADT.md) |
-| 6  | 7      | Examen 1                                                          | *(pendiente)* |
+| 6  | 7      | Examen 1                                                          | *(administrado; evaluación interna)* |
 | 7  | 8      | Time complexity (Big-O)                                           | *(pendiente)* |
 | 8  | 9      | Linked Lists                                                      | *(pendiente)* |
 | 9  | 10     | Stacks & Queues                                                   | *(pendiente)* |
@@ -38,7 +38,7 @@ Repositorio con los materiales del curso (lectures y laboratorios), en C++. Cont
 | 4  | 4      | OOP — parte 2 (static members, aggregation, copies, operator overloading; preview de inheritance/polymorphism) | [Lab 4 - OOP Part 2](labs/Lab4_OOP_Parte2.md) |
 | 5  | 5      | Práctica evaluada en casa — OOP y Function Templates; sesión presencial: Project Kickoff | [Lab 5 - Práctica Semana 5](labs/Lab5_Practica_Semana5_OOP_Function_Templates.md) |
 | 6  | 6      | Templates (clases genéricas)                                       | [Lab 6 - Class Templates](labs/Lab6_Class_Templates.md) |
-| 7  | 7      | ADT                                                                | *(pendiente)* |
+| 7  | 7      | Abstract Data Types (ADT)                                          | [Lab 7 - Abstract Data Types](labs/Lab7_Abstract_Data_Types.md) |
 | 8  | 8      | Big-O / análisis de time complexity                                | *(pendiente)* |
 | 9  | 9      | Linked Lists                                                      | *(pendiente)* |
 | 10 | 10     | Stacks & Queues                                                   | *(pendiente)* |
