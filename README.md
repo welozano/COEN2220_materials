@@ -39,7 +39,7 @@ Repositorio con los materiales del curso (lectures y laboratorios), en C++. Cont
 | 5  | 5      | Práctica evaluada en casa — OOP y Function Templates; sesión presencial: Project Kickoff (administrado) | [Lab 5 - Práctica Semana 5](labs/Lab5_Practica_Semana5_OOP_Function_Templates.md) |
 | 6  | 6      | Templates (clases genéricas)                                       | [Lab 6 - Class Templates](labs/Lab6_Class_Templates.md) |
 | 7  | 7      | Abstract Data Types (ADT)                                          | [Lab 7 - Abstract Data Types](labs/Lab7_Abstract_Data_Types.md) |
-| 8  | 8      | Big-O / análisis de time complexity                                | *(pendiente)* |
+| 8  | 8      | Big-O / análisis de time complexity                                | [Lab 8 - Big-O / Time Complexity](labs/Lab8_Big_O_Time_Complexity.md) |
 | 9  | 9      | Linked Lists                                                      | *(pendiente)* |
 | 10 | 10     | Stacks & Queues                                                   | *(pendiente)* |
 | 11 | 11     | Recursion                                                         | *(pendiente)* |
