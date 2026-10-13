@@ -20,7 +20,7 @@ Repositorio con los materiales del curso (lectures y laboratorios), en C++. Cont
 | 5  | 6      | Abstract Data Types (ADT)                                         | [Semana 6: Introducción a ADT](lectures/Semana6_Templates_Class_Templates_ADT.md) |
 | 6  | 7      | Examen 1                                                          | *(administrado; evaluación interna)* |
 | 7  | 8      | Time complexity (Big-O)                                           | [Semana 8: Time Complexity (Big-O)](lectures/Semana8_Time_Complexity_Big_O.md) |
-| 8  | 9      | Linked Lists                                                      | *(pendiente)* |
+| 8  | 9      | Linked Lists                                                      | [Semana 9: Linked Lists](lectures/Semana9_Linked_Lists.md) |
 | 9  | 10     | Stacks & Queues                                                   | *(pendiente)* |
 | 10 | 11     | Recursion                                                         | *(pendiente)* |
 | 11 | 12     | Sorting algorithms                                                | *(pendiente)* |
