@@ -41,7 +41,7 @@ Repositorio con los materiales del curso (lectures y laboratorios), en C++. Cont
 | 7  | 7      | Abstract Data Types (ADT)                                          | [Lab 7 - Abstract Data Types](labs/Lab7_Abstract_Data_Types.md) |
 | 8  | 8      | Big-O / análisis de time complexity                                | [Lab 8 - Big-O / Time Complexity](labs/Lab8_Big_O_Time_Complexity.md) |
 | 9  | 9      | Linked Lists                                                      | [Lab 9 - Linked Lists](labs/Lab9_Linked_Lists.md) |
-| 10 | 10     | Stacks & Queues                                                   | *(pendiente)* |
+| 10 | 10     | Stacks & Queues                                                   | [Lab 10 - Stacks & Queues](labs/Lab10_Stacks_Queues.md) |
 | 11 | 11     | Recursion                                                         | *(pendiente)* |
 | 12 | 12     | Sorting algorithms                                                | *(pendiente)* |
 | 13 | 13     | Repaso general antes de Examen 2                                   | *(pendiente)* |
