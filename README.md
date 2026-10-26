@@ -22,9 +22,9 @@ Repositorio con los materiales del curso (lectures y laboratorios), en C++. Cont
 | 7  | 8      | Time complexity (Big-O)                                           | [Semana 8: Time Complexity (Big-O)](lectures/Semana8_Time_Complexity_Big_O.md) |
 | 8  | 9      | Linked Lists                                                      | [Semana 9: Linked Lists](lectures/Semana9_Linked_Lists.md) |
 | 9  | 10     | Stacks & Queues                                                   | [Semana 10: Stacks & Queues](lectures/Semana10_Stacks_Queues.md) |
-| 10 | 11     | Recursion                                                         | *(pendiente)* |
-| 11 | 12     | Sorting algorithms                                                | *(pendiente)* |
-| 12 | 13     | Binary Trees (intro + puente con discrete math)                   | *(pendiente)* |
+| 10 | 11     | Recursion y merge sort completo                                    | [Semana 11: Recursion y Merge Sort](lectures/Semana11_Recursion_Merge_Sort.md) |
+| 11 | 12     | Quicksort, comparación de sorting, searching e introducción a Binary Trees | *(pendiente)* |
+| 12 | 13     | Binary Trees y Binary Search Trees (BST): inserción, búsqueda y recorridos | *(pendiente)* |
 | 13 | 14     | Examen 2                                                          | *(pendiente)* |
 | 14 | 15     | Defensas de proyecto                                              | *(pendiente)* |
 
@@ -42,9 +42,9 @@ Repositorio con los materiales del curso (lectures y laboratorios), en C++. Cont
 | 8  | 8      | Big-O / análisis de time complexity                                | [Lab 8 - Big-O / Time Complexity](labs/Lab8_Big_O_Time_Complexity.md) |
 | 9  | 9      | Linked Lists                                                      | [Lab 9 - Linked Lists](labs/Lab9_Linked_Lists.md) |
 | 10 | 10     | Stacks & Queues                                                   | [Lab 10 - Stacks & Queues](labs/Lab10_Stacks_Queues.md) |
-| 11 | 11     | Recursion                                                         | *(pendiente)* |
-| 12 | 12     | Sorting algorithms                                                | *(pendiente)* |
-| 13 | 13     | Repaso general antes de Examen 2                                   | *(pendiente)* |
+| 11 | 11     | Recursion y merge sort + aplicación al proyecto                     | *(pendiente)* |
+| 12 | 12     | Sorting y searching + aplicación al proyecto                        | *(pendiente)* |
+| 13 | 13     | Práctica breve de Binary Trees + repaso para Examen 2                | *(pendiente)* |
 | 14 | 14     | Proyecto — Desarrollo final                                        | *(pendiente)* |
 | 15 | 15     | Defensas de proyecto (individual 1-a-1)                            | *(pendiente)* |
 
@@ -63,9 +63,9 @@ COEN2220_materials/
 ├── README.md                      ← este archivo (índice general)
 ├── labs/
 │   ├── Lab1_Git_GitHub_Consola.md (reutilizado de COEN 2210)
-│   ├── Lab2_...md      (pendiente)
+│   ├── Lab2_IDE_Pointers.md
 │   └── ...
 └── lectures/
-    ├── Semana1-2_Pointers_Memoria_Dinamica.md   (pendiente)
+    ├── Semana1-2_Pointers_Memoria_Dinamica.md
     └── ...
 ```
