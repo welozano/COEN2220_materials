@@ -153,7 +153,19 @@ Hay seis llamadas en total: reciben `5`, `4`, `3`, `2`, `1` y `0`. Cinco son lla
 
 ### Segundo ejemplo: factorial y posibles órdenes de ejecución
 
-El mismo laboratorio necesita calcular cuántas secuencias diferentes puede formar con cinco pruebas distintas, ejecutando cada una exactamente una vez. Para el primer lugar hay cinco opciones; elegida una, quedan cuatro para el segundo, luego tres, dos y una. El número de secuencias es `5 × 4 × 3 × 2 × 1 = 120`.
+El mismo laboratorio debe realizar cinco pruebas de calibración diferentes. Aquí, **distintas** significa que cada prueba es identificable y tiene una tarea propia:
+
+- **A:** verificar el voltaje.
+- **B:** verificar la temperatura.
+- **C:** verificar la presión.
+- **D:** verificar la velocidad.
+- **E:** verificar la precisión.
+
+Para este ejemplo, suponemos que ninguna prueba necesita el resultado de otra: **pueden ejecutarse en cualquier orden**. El laboratorio debe realizar las cinco, exactamente una vez cada una, y quiere saber cuántos órdenes de ejecución son posibles. La secuencia `A → B → C → D → E` es una posibilidad; `B → A → C → D → E` es otra. Contienen las mismas pruebas, pero cambia su orden.
+
+Para elegir la primera prueba hay **5 opciones**. Después de elegirla, quedan **4** para la segunda posición, porque no podemos repetir la anterior. Luego quedan **3**, después **2** y finalmente **1**. Por cada elección inicial existen cuatro opciones para continuar, por cada una de esas existen tres, y así sucesivamente. Por eso multiplicamos: `5 × 4 × 3 × 2 × 1 = 120 órdenes diferentes`. No significa ejecutar 120 pruebas: significa que hay 120 maneras de ordenar las mismas cinco.
+
+Este es un problema de **combinatoria**, el área de las matemáticas que estudia cómo contar selecciones y arreglos de elementos. Específicamente, contamos **permutaciones sin repetición de los cinco elementos**: usamos todos, ninguno se repite y el orden importa. Una **combinación**, en cambio, cuenta selecciones donde el orden no importa; seleccionar las cinco pruebas como un grupo sería una sola selección. Aquí necesitamos distinguir sus órdenes de ejecución, por lo que usamos permutaciones.
 
 Ese producto se llama **factorial**. Para un entero no negativo `n`, se escribe `n!` y representa el producto de los enteros de `1` a `n`. Se define `0! = 1`: existe una forma de organizar una colección vacía, sin colocar ningún elemento. Aquí el signo `!` es notación matemática, no una operación factorial disponible en C++.
 
