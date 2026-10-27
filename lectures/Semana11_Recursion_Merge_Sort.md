@@ -307,7 +307,27 @@ La función que luego llamaremos `mergeSort` trabajará con esos límites. Para 
 int middle = first + (last - first) / 2; // Locate the final index of the left half.
 ```
 
-Esta línea irá dentro de `mergeSort`, después de comprobar su caso base. La división entre enteros descarta la parte fraccionaria. Para `first = 0` y `last = 7`, resulta `middle = 3`. Por tanto, la izquierda es `0..3` y la derecha es `4..7`. Al dividir la izquierda, sus límites `0..3` producen `middle = 1` y los segmentos `0..1` y `2..3`. La expresión calcula el punto medio sin sumar directamente dos índices potencialmente grandes.
+Esta línea irá dentro de `mergeSort`, después de comprobar su caso base. La división entre enteros descarta la parte fraccionaria. Para `first = 0` y `last = 7`, resulta `middle = 3`. La expresión calcula el punto medio sin sumar directamente dos índices potencialmente grandes.
+
+Con ese punto medio se determinan los **nuevos límites que recibirá cada llamada**:
+
+| Llamada siguiente | Su nuevo `first` | Su nuevo `last` | Razón |
+| --- | --- | --- | --- |
+| Ordenar la mitad izquierda | El `first` de la llamada actual. | El `middle` calculado. | Conserva el inicio y termina en el punto medio, incluido. |
+| Ordenar la mitad derecha | `middle + 1`. | El `last` de la llamada actual. | Comienza después del punto medio y conserva el final. |
+
+Por tanto, la llamada que recibe `0..7` solicita ordenar `0..3` y `4..7`. En la llamada izquierda, `first` vale `0` y `last` vale `3`; se vuelve a calcular `middle`, ahora `1`, para producir `0..1` y `2..3`. Cuando se ejecuta la llamada derecha sobre `4..7`, sus parámetros valen `first = 4` y `last = 7`; calcula `middle = 5` y produce `4..5` y `6..7`. Los límites siempre se obtienen de la llamada que se está ejecutando, no de los límites originales de todo el array.
+
+Estas dos instrucciones aparecerán dentro de `mergeSort`, después de calcular `middle`. `tests` será el array de pruebas y `temporary` su array auxiliar; ambos se comparten entre las llamadas. Los dos argumentos finales son los límites que recibe la llamada nueva:
+
+```cpp
+mergeSort(tests, temporary, first, middle);    // Left call receives first..middle.
+mergeSort(tests, temporary, middle + 1, last); // Right call receives middle+1..last.
+```
+
+No se asigna un valor nuevo al `first` o al `last` de la llamada actual. Cada llamada nueva recibe sus propias copias de esos enteros como parámetros. Por ejemplo, pasar `middle` como último argumento hace que **el parámetro `last` de la llamada nueva** reciba ese valor. La llamada original conserva sus límites para combinar después el segmento completo.
+
+Usamos `middle + 1` porque los límites son inclusivos: el elemento en `middle` ya pertenece a la izquierda. Así ningún elemento se procesa en ambas mitades y ninguna posición queda fuera.
 
 Dividir significa pasar límites diferentes a las llamadas siguientes; en esta etapa no se mueven valores ni se crean dos arrays nuevos.
 
@@ -325,6 +345,50 @@ Merge sorted ranges on return:
 ```
 
 Estos son los rangos que se dividirán, no llamadas que corren simultáneamente. El programa completo terminará la rama izquierda antes de comenzar la derecha. Primero entenderemos cómo se combinan dos segmentos ordenados; después veremos qué llamadas producen esos segmentos.
+
+### Cómo se evalúan los índices al llegar al caso base
+
+El esquema anterior muestra los niveles de división y combinación. Para ver exactamente cuándo deja de dividirse una rama, necesitamos la condición del caso base de `mergeSort`: **`first >= last`**. Se comprueba al entrar en cada llamada, antes de calcular `middle` o solicitar nuevas llamadas.
+
+- Si `first < last`, hay al menos dos elementos: la llamada continúa y divide su segmento.
+- Si `first == last`, hay un solo elemento: ya está ordenado y la llamada ejecuta `return`.
+- Si `first > last`, el segmento está vacío: también ejecuta `return`, sin acceder al array.
+
+Este es el fragmento que aparecerá al inicio de la definición completa de `mergeSort` en la Parte 4:
+
+```cpp
+if (first >= last)
+{
+    return; // An empty segment or one element needs no further sorting.
+}
+```
+
+Sigamos la primera rama del mismo ejemplo, sin cambiar sus valores ni sus rangos. La indentación muestra qué llamada está esperando a otra:
+
+```text
+mergeSort(..., 0, 7): 0 >= 7? false -> middle = 3
+    mergeSort(..., 0, 3): 0 >= 3? false -> middle = 1
+        mergeSort(..., 0, 1): 0 >= 1? false -> middle = 0
+            mergeSort(..., 0, 0): 0 >= 0? true
+                return; [8] is already sorted
+
+        Resume the call for 0..1 after its left call:
+            mergeSort(..., 1, 1): 1 >= 1? true
+                return; [3] is already sorted
+
+        Resume the call for 0..1 after its right call:
+            merge(..., 0, 0, 1): combine [8] and [3] -> [3 8]
+            the call for 0..1 finishes and returns
+
+    Resume the call for 0..3 after its left call:
+        next: mergeSort(..., 2, 3)
+```
+
+Los puntos suspensivos `...` abrevian los dos arrays que se pasan como primeros argumentos. En la línea de `merge`, los tres índices son `first`, `middle` y `last`; la función combina `0..0` con `1..1`.
+
+Cuando `mergeSort(..., 0, 0)` ejecuta `return`, termina **solo esa llamada**; no termina todo el algoritmo. La llamada que recibió `0..1` sigue activa y continúa con su mitad derecha, `1..1`. Después de que esa segunda llamada también regresa, puede combinar ambos elementos. Por eso los resultados ordenados se construyen durante los retornos.
+
+En el último nivel del esquema, todos los rangos tienen extremos iguales: `0..0`, `1..1`, hasta `7..7`. Cada uno satisface `first >= last`. No se calcula otro punto medio ni se llama a `merge` dentro de esas llamadas individuales; la combinación corresponde a la llamada anterior que las solicitó.
 
 <details>
 <summary>Pregunta de verificación: para cinco elementos en índices <code>0..4</code>, ¿cuáles son las mitades?</summary>
@@ -689,19 +753,40 @@ La llamada que recibe cuatro nodes hace lo mismo con dos listas de dos. La que r
 
 La función no necesita saber resolver directamente todos los tamaños. Solo necesita saber que una lista de un node está ordenada y saber combinar dos listas que ya lo están. Al regresar de los casos base, combina un node con otro para producir una lista ordenada de dos; esos resultados permiten ordenar cuatro y, finalmente, ocho. **La división reduce el problema; las combinaciones durante los retornos construyen la solución.**
 
-```text
-Descend through recursive calls along the first branch:
-sort 8 nodes -> sort 4 nodes -> sort 2 nodes -> sort 1 node
-                                                     |
-                                                base case
+El siguiente esquema muestra **qué lista recibe cada llamada al seguir la primera rama del ejemplo de calibración**. Cada número entre corchetes es la duración guardada en un node, y cada flecha `->` es su enlace `next`. Se omiten los IDs y el `nullptr` final para hacer visible la reducción. La indentación indica una llamada nueva: la de arriba queda esperando mientras se resuelve la de abajo.
 
-Build results as calls finish their two halves:
-1 sorted node + 1 sorted node -> 2 sorted nodes
-2 sorted nodes + 2 sorted nodes -> 4 sorted nodes
-4 sorted nodes + 4 sorted nodes -> 8 sorted nodes
+```text
+mergeSortNodes receives 8 nodes: [8] -> [3] -> [6] -> [2] -> [7] -> [4] -> [6] -> [5]
+    After splitting, its left call receives 4 nodes: [8] -> [3] -> [6] -> [2]
+        After splitting, its left call receives 2 nodes: [8] -> [3]
+            After splitting, its left call receives 1 node: [8]
+                Base case: return the address of this node.
 ```
 
-El descenso mostrado sigue solo la primera rama. Para cada combinación también debe completarse la otra mitad. La llamada de ocho nodes permanece pendiente en el call stack mientras se ordena su izquierda; cuando recibe ese resultado, solicita ordenar su derecha. Solo después de recibir ambos resultados ejecuta el merge final. No se ejecutan las dos ramas a la vez ni se pierde el trabajo de la llamada original: cada llamada conserva las direcciones y el punto donde debe continuar.
+La llamada que recibió `[8] -> [3]` no termina al recibir de vuelta el node `[8]`. Aún debe llamar con su otra mitad, `[3]`, que también satisface el caso base. Ahora sí tiene dos listas ordenadas de un node y puede combinar sus nodes como `[3] -> [8]`.
+
+El próximo esquema muestra **tres combinaciones concretas que construyen el resultado al regresar**. Cada bloque presenta las dos listas que ya fueron ordenadas y la lista que devuelve su combinación. Entre un bloque y el siguiente deben completarse también las llamadas de las otras ramas: por ejemplo, la lista `[2] -> [6]` se obtiene al separar y combinar los nodes que inicialmente estaban como `[6] -> [2]`.
+
+```text
+First merge: each input has 1 node.
+    Left sorted input:  [8]
+    Right sorted input: [3]
+    Returned list:      [3] -> [8]
+
+Merge for the original left half: each input now has 2 nodes.
+    Left sorted input:  [3] -> [8]
+    Right sorted input: [2] -> [6]
+    Returned list:      [2] -> [3] -> [6] -> [8]
+
+Final merge: each input now has 4 nodes.
+    Left sorted input:  [2] -> [3] -> [6] -> [8]
+    Right sorted input: [4] -> [5] -> [6] -> [7]
+    Returned list:      [2] -> [3] -> [4] -> [5] -> [6] -> [6] -> [7] -> [8]
+```
+
+Las listas de entrada de cada combinación están separadas; la función las une reconectando sus nodes existentes. No suma las duraciones ni crea más registros. El crecimiento de uno a dos, cuatro y ocho describe cuántos nodes contiene cada resultado ordenado.
+
+La llamada de ocho nodes permanece pendiente en el call stack mientras se ordena su izquierda; cuando recibe ese resultado, solicita ordenar su derecha. Solo después de recibir ambos resultados ejecuta el merge final mostrado. No se ejecutan las dos ramas a la vez ni se pierde el trabajo de la llamada original: cada llamada conserva las direcciones y el punto donde debe continuar. En el Paso 3 seguiremos todas las ramas para completar los detalles omitidos en estos dos esquemas introductorios.
 
 La recursión está en **`mergeSortNodes`, que se llama a sí misma dos veces sobre listas más pequeñas**. `splitList` encuentra y separa las mitades mediante un loop; `mergeSortedLists` combina mediante otro loop y no se llama a sí misma. Los pasos siguientes muestran cómo esos tres métodos cooperan para completar cada llamada recursiva.
 
@@ -753,33 +838,33 @@ Sigamos primero la cadena `A -> B -> C -> D`. `mergeSortNodes` la separa en `A -
 
 La misma operación sobre `C:6` y `D:2` devuelve `D:2 -> C:6 -> nullptr`. Solo después de recibir esos dos resultados, la llamada que tenía cuatro nodes combina `[B:3 -> A:8]` con `[D:2 -> C:6]` y devuelve `[D:2 -> B:3 -> C:6 -> A:8]`.
 
-Este esquema representa las llamadas por indentación. Dentro de cada lista se omite el `nullptr` final para facilitar la lectura. Una línea más indentada es una llamada que debe terminar antes de que continúe la que está encima; los dos lados se ejecutan sucesivamente.
+Este esquema representa las llamadas por indentación. Cada node se muestra como `letra:duración`, tanto al entrar como al regresar; por ejemplo, `A:8` identifica la prueba `CAL-101` y sus ocho minutos. Dentro de cada lista se omite el `nullptr` final para facilitar la lectura. Una línea más indentada es una llamada que debe terminar antes de que continúe la que está encima; los dos lados se ejecutan sucesivamente.
 
 ```text
-mergeSortNodes(A -> B -> C -> D -> E -> F -> G -> H)
-    mergeSortNodes(A -> B -> C -> D)
-        mergeSortNodes(A -> B)
-            mergeSortNodes(A) -> return A  (one node)
-            mergeSortNodes(B) -> return B  (one node)
-            merge(A, B)      -> return B:3 -> A:8
-        mergeSortNodes(C -> D)
-            mergeSortNodes(C) -> return C  (one node)
-            mergeSortNodes(D) -> return D  (one node)
-            merge(C, D)      -> return D:2 -> C:6
-        merge(B -> A, D -> C)
+mergeSortNodes(A:8 -> B:3 -> C:6 -> D:2 -> E:7 -> F:4 -> G:6 -> H:5)
+    mergeSortNodes(A:8 -> B:3 -> C:6 -> D:2)
+        mergeSortNodes(A:8 -> B:3)
+            mergeSortNodes(A:8) -> return A:8  (one node)
+            mergeSortNodes(B:3) -> return B:3  (one node)
+            merge(A:8, B:3)    -> return B:3 -> A:8
+        mergeSortNodes(C:6 -> D:2)
+            mergeSortNodes(C:6) -> return C:6  (one node)
+            mergeSortNodes(D:2) -> return D:2  (one node)
+            merge(C:6, D:2)    -> return D:2 -> C:6
+        merge(B:3 -> A:8, D:2 -> C:6)
             -> return D:2 -> B:3 -> C:6 -> A:8
-    mergeSortNodes(E -> F -> G -> H)
-        mergeSortNodes(E -> F)
-            mergeSortNodes(E) -> return E  (one node)
-            mergeSortNodes(F) -> return F  (one node)
-            merge(E, F)      -> return F:4 -> E:7
-        mergeSortNodes(G -> H)
-            mergeSortNodes(G) -> return G  (one node)
-            mergeSortNodes(H) -> return H  (one node)
-            merge(G, H)      -> return H:5 -> G:6
-        merge(F -> E, H -> G)
+    mergeSortNodes(E:7 -> F:4 -> G:6 -> H:5)
+        mergeSortNodes(E:7 -> F:4)
+            mergeSortNodes(E:7) -> return E:7  (one node)
+            mergeSortNodes(F:4) -> return F:4  (one node)
+            merge(E:7, F:4)    -> return F:4 -> E:7
+        mergeSortNodes(G:6 -> H:5)
+            mergeSortNodes(G:6) -> return G:6  (one node)
+            mergeSortNodes(H:5) -> return H:5  (one node)
+            merge(G:6, H:5)    -> return H:5 -> G:6
+        merge(F:4 -> E:7, H:5 -> G:6)
             -> return F:4 -> H:5 -> G:6 -> E:7
-    merge(D -> B -> C -> A, F -> H -> G -> E)
+    merge(D:2 -> B:3 -> C:6 -> A:8, F:4 -> H:5 -> G:6 -> E:7)
         -> return D:2 -> B:3 -> F:4 -> H:5 -> C:6 -> G:6 -> E:7 -> A:8
 ```
 
