@@ -23,7 +23,7 @@ Repositorio con los materiales del curso (lectures y laboratorios), en C++. Cont
 | 8  | 9      | Linked Lists                                                      | [Semana 9: Linked Lists](lectures/Semana9_Linked_Lists.md) |
 | 9  | 10     | Stacks & Queues                                                   | [Semana 10: Stacks & Queues](lectures/Semana10_Stacks_Queues.md) |
 | 10 | 11     | Recursion y merge sort                                             | [Semana 11: Recursion y Merge Sort](lectures/Semana11_Recursion_Merge_Sort.md) |
-| 11 | 12     | Quicksort, comparación de sorting, searching e introducción a Binary Trees | *(pendiente)* |
+| 11 | 12     | Quicksort, comparación de sorting, searching e introducción a Binary Trees | [Semana 12: Quicksort, Searching y Binary Trees](lectures/Semana12_Quicksort_Searching_Binary_Trees.md) |
 | 12 | 13     | Binary Trees y Binary Search Trees (BST): inserción, búsqueda y recorridos | *(pendiente)* |
 | 13 | 14     | Examen 2                                                          | *(pendiente)* |
 | 14 | 15     | Defensas de proyecto                                              | *(pendiente)* |
