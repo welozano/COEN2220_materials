@@ -43,7 +43,7 @@ Repositorio con los materiales del curso (lectures y laboratorios), en C++. Cont
 | 9  | 9      | Linked Lists                                                      | [Lab 9 - Linked Lists](labs/Lab9_Linked_Lists.md) |
 | 10 | 10     | Stacks & Queues                                                   | [Lab 10 - Stacks & Queues](labs/Lab10_Stacks_Queues.md) |
 | 11 | 11     | Recursion y merge sort + aplicación al proyecto                     | [Lab 11 - Recursion y Merge Sort](labs/Lab11_Recursion_Merge_Sort.md) |
-| 12 | 12     | Sorting y searching + aplicación al proyecto                        | *(pendiente)* |
+| 12 | 12     | Sorting y searching + aplicación al proyecto                        | [Lab 12 - Quicksort y Searching](labs/Lab12_Quicksort_Searching.md) |
 | 13 | 13     | Práctica breve de Binary Trees + repaso para Examen 2                | *(pendiente)* |
 | 14 | 14     | Proyecto — Desarrollo final                                        | *(pendiente)* |
 | 15 | 15     | Defensas de proyecto (individual 1-a-1)                            | *(pendiente)* |
