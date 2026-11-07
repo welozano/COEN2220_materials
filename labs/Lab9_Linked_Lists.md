@@ -246,9 +246,13 @@ List starts empty after additions: false
 ```
 
 <details>
-<summary>Pregunta de verificación: después de agregar <code>LF-330</code>, ¿qué pointer sigue señalando el primer node y qué pointer termina señalando el último?</summary>
+<summary>Pregunta de verificación: al enlazar <code>LF-330</code>, antes de terminar <code>addItem</code>, ¿a qué node apuntan <code>head</code>, <code>currentNode</code> y <code>newNode</code>?</summary>
 
-`head` sigue señalando el primer node, `LF-104`. Dentro de `addItem`, `currentNode` termina señalando `LF-330`, el último node. Cuando la función termina, `currentNode` deja de existir porque era un pointer local; `head` conserva la entrada a la lista.
+`head` sigue señalando el primer node, `LF-104`. El traversal deja `currentNode` en `LF-215`, que era el último node antes de agregar el nuevo. `newNode` señala el node recién creado, `LF-330`.
+
+La asignación `currentNode->next = newNode;` cambia el enlace `next` de `LF-215` para que apunte a `LF-330`; no cambia la dirección guardada en `currentNode`. Por eso, después del enlace, `currentNode` todavía señala `LF-215` y `newNode` señala el nuevo último node, `LF-330`.
+
+Cuando `addItem` termina, sus pointers locales `currentNode` y `newNode` dejan de existir, pero los nodes dinámicos permanecen enlazados. `head`, que es un data member de la clase, conserva la entrada a la lista.
 
 </details>
 
