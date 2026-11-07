@@ -37,6 +37,8 @@ book_chapters/
 final_project/
 # Evaluaciones internas del curso — nunca subir
 evaluations/
+# Evaluación privada: exports, entregas, evidencia y notas por laboratorio
+/grading/
 
 # --- Documentos internos de diseño del curso: no son para los estudiantes ---
 CONTEXT.md
