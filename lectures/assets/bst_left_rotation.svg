@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 400" role="img" aria-label="Left rotation preserves the BST order while changing links"><title>Left rotation preserves the BST order while changing links</title><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#425466"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="270" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#17324d">Before: unbalanced at 30</text>
+<text x="825" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#17324d">After a left rotation at 30</text>
+<line x1="212.90423463631518" y1="105.38618882731635" x2="150.06894194867348" y2="161.93795224619384" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="167.48658829249433" y="133.6620705367551" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">left</text>
+<line x1="248.9104204078069" y1="103.0918295130971" x2="337.800810825618" y2="164.63133057158169" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="307.35561561671244" y="133.8615800423394" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<line x1="345.8793658891568" y1="198.1551009996555" x2="306.57639656490284" y2="248.6874901308392" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="312.2278812270298" y="223.42129556524736" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">left</text>
+<line x1="376.2634559672906" y1="196.26345596729058" x2="430.90811690796323" y2="250.90811690796323" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="417.5857864376269" y="223.5857864376269" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<line x1="460.28591269649905" y1="290.57182539299805" x2="477.92523292150116" y2="325.85046584300227" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="483.10557280900014" y="308.21114561800016" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<circle cx="230" cy="90" r="23" fill="#ffe2df" stroke="#17324d" stroke-width="2"/>
+<text x="230" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">30</text>
+<circle cx="130" cy="180" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="130" y="186" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">20</text>
+<circle cx="360" cy="180" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="360" y="186" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">50</text>
+<circle cx="290" cy="270" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="290" y="276" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">40</text>
+<circle cx="450" cy="270" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="450" y="276" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">70</text>
+<circle cx="490" cy="350" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="490" y="356" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">80</text>
+<line x1="781.0895795921931" y1="103.0918295130971" x2="692.199189174382" y2="164.63133057158169" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="722.6443843832876" y="133.8615800423394" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">left</text>
+<line x1="819.7223372913885" y1="101.83340237483311" x2="926.8476910057614" y2="166.10861460345677" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="887.2850141485749" y="133.97100848914494" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<line x1="655.8793658891568" y1="198.1551009996555" x2="616.5763965649029" y2="248.6874901308392" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="622.2278812270299" y="223.42129556524736" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">left</text>
+<line x1="684.1206341108432" y1="198.1551009996555" x2="723.4236034350971" y2="248.6874901308392" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="717.7721187729701" y="223.42129556524736" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<line x1="961.1697874171085" y1="200.10561735079537" x2="986.887640858177" y2="246.39775354471848" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="988.0287141376427" y="223.25168544775693" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<circle cx="800" cy="90" r="23" fill="#daf5e8" stroke="#17324d" stroke-width="2"/>
+<text x="800" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">50</text>
+<circle cx="670" cy="180" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="670" y="186" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">30</text>
+<circle cx="950" cy="180" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="950" y="186" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">70</text>
+<circle cx="600" cy="270" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="600" y="276" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">20</text>
+<circle cx="740" cy="270" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="740" y="276" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">40</text>
+<circle cx="1000" cy="270" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="1000" y="276" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">80</text>
+<text x="790" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" fill="#17324d">Inorder before and after: 20,30,40,50,70,80</text>
+</svg>

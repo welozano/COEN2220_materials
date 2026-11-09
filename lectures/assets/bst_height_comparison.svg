@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 660" role="img" aria-label="Same eight IDs: balanced shape versus a chain"><title>Same eight IDs: balanced shape versus a chain</title><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#425466"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="310" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" fill="#17324d">Insertion: 50,30,70,20,40,60,80,65</text>
+<line x1="279.42817460700195" y1="96.28591269649903" x2="180.14953415699773" y2="145.92523292150113" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="215.78885438199984" y="121.10557280900008" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">left</text>
+<line x1="320.57182539299805" y1="96.28591269649903" x2="419.85046584300227" y2="145.92523292150113" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="384.21114561800016" y="121.10557280900008" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<line x1="139.73654403270942" y1="174.26345596729058" x2="103.09188309203678" y2="210.90811690796323" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="107.4142135623731" y="192.5857864376269" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">left</text>
+<line x1="172.26345596729058" y1="174.26345596729058" x2="208.90811690796323" y2="210.90811690796323" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="204.5857864376269" y="192.5857864376269" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<line x1="427.7365440327094" y1="174.26345596729058" x2="391.09188309203677" y2="210.90811690796323" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="395.4142135623731" y="192.5857864376269" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">left</text>
+<line x1="460.2634559672906" y1="174.26345596729058" x2="496.90811690796323" y2="210.90811690796323" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="492.5857864376269" y="192.5857864376269" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<line x1="382.76141756963773" y1="250.32712207598243" x2="395.3670315486861" y2="274.1377262586293" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="403.0642245591619" y="262.23242416730585" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<circle cx="300.0" cy="86.0" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="300.0" y="92.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">50</text>
+<circle cx="156.0" cy="158.0" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="156.0" y="164.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">30</text>
+<circle cx="444.0" cy="158.0" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="444.0" y="164.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">70</text>
+<circle cx="84.0" cy="230.0" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="84.0" y="236.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">20</text>
+<circle cx="228.0" cy="230.0" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="228.0" y="236.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">40</text>
+<circle cx="372.0" cy="230.0" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="372.0" y="236.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">60</text>
+<circle cx="516.0" cy="230.0" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="516.0" y="236.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">80</text>
+<circle cx="408.0" cy="298.0" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="408.0" y="304.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">65</text>
+<text x="300.0" y="46.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#17324d">root</text>
+<text x="310" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" fill="#17324d">Height = 3 edges; search 80 visits 3 nodes</text>
+<text x="855" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" fill="#17324d">Insertion: 20,30,40,50,60,65,70,80</text>
+<line x1="855.0" y1="113.0" x2="855.0" y2="133.0" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="855.0" y1="183.0" x2="855.0" y2="203.0" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="855.0" y1="253.0" x2="855.0" y2="273.0" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="855.0" y1="323.0" x2="855.0" y2="343.0" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="855.0" y1="393.0" x2="855.0" y2="413.0" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="855.0" y1="463.0" x2="855.0" y2="483.0" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="855.0" y1="533.0" x2="855.0" y2="553.0" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<circle cx="855" cy="90" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="855" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">20</text>
+<circle cx="855" cy="160" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="855" y="166" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">30</text>
+<circle cx="855" cy="230" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="855" y="236" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">40</text>
+<circle cx="855" cy="300" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="855" y="306" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">50</text>
+<circle cx="855" cy="370" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="855" y="376" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">60</text>
+<circle cx="855" cy="440" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="855" y="446" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">65</text>
+<circle cx="855" cy="510" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="855" y="516" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">70</text>
+<circle cx="855" cy="580" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="855" y="586" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">80</text>
+<text x="855" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#17324d">root</text>
+<text x="1010" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#17324d">All links</text>
+<text x="1010" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#17324d">are right</text>
+<text x="855" y="635" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" fill="#17324d">Height = 7 edges; search 80 visits 8 nodes</text>
+</svg>

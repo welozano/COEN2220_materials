@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 600" role="img" aria-label="Independent deletion cases: leaf, one child, two children"><title>Independent deletion cases: leaf, one child, two children</title><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#425466"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="180" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#17324d">Leaf: remove 20</text>
+<text x="550" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#17324d">One child: remove 60</text>
+<text x="925" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#17324d">Two children: remove 50</text>
+<line x1="115.03179841051272" y1="107.46290185440182" x2="87.57136708331115" y2="139.500071736137" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="87.30158274691193" y="123.4814867952694" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">left</text>
+<circle cx="130" cy="90" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="130" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">30</text>
+<circle cx="70" cy="160" r="23" fill="#ffe2df" stroke="#17324d" stroke-width="2"/>
+<text x="70" y="166" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">20</text>
+<text x="245" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#17324d">after</text>
+<circle cx="295" cy="90" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="295" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">30</text>
+<text x="295" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#17324d">left = nullptr</text>
+<line x1="456.6315215444608" y1="108.7158698377549" x2="435.6934312304156" y2="138.02919627741815" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="432.16247638743823" y="123.37253305758652" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">left</text>
+<line x1="433.3684784555392" y1="178.7158698377549" x2="454.3065687695844" y2="208.02919627741815" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="457.83752361256177" y="193.3725330575865" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<circle cx="470" cy="90" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="470" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">70</text>
+<circle cx="420" cy="160" r="23" fill="#ffe2df" stroke="#17324d" stroke-width="2"/>
+<text x="420" y="166" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">60</text>
+<circle cx="470" cy="230" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="470" y="236" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">65</text>
+<text x="550" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#17324d">after</text>
+<line x1="627.5625753997896" y1="109.34710493366073" x2="609.6004549654645" y2="137.28818116483305" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="604.5815151826271" y="123.3176430492469" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">left</text>
+<circle cx="640" cy="90" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="640" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">70</text>
+<circle cx="595" cy="160" r="23" fill="#daf5e8" stroke="#17324d" stroke-width="2"/>
+<text x="595" y="166" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">65</text>
+<line x1="881.157665828062" y1="98.18963392035656" x2="822.1192618540141" y2="139.51651670219013" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="837.6384638410381" y="118.85307531127334" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">left</text>
+<line x1="918.842334171938" y1="98.18963392035656" x2="977.8807381459859" y2="139.51651670219013" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="962.3615361589619" y="118.85307531127334" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<line x1="787.5625753997896" y1="174.34710493366072" x2="769.6004549654645" y2="202.28818116483305" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="764.5815151826271" y="188.3176430492469" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">left</text>
+<line x1="812.4374246002104" y1="174.34710493366072" x2="830.3995450345355" y2="202.28818116483305" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="835.4184848173729" y="188.3176430492469" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<line x1="986.6315215444608" y1="173.7158698377549" x2="965.6934312304156" y2="203.02919627741815" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="962.1624763874382" y="188.3725330575865" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">left</text>
+<line x1="1014.2098956944337" y1="173.08532179291572" x2="1038.3188180978386" y2="203.76940485179458" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1040.2643568961362" y="188.42736332235515" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<line x1="959.0601438673209" y1="246.14033569041533" x2="969.3641789383624" y2="270.18308418951244" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="978.2121614028417" y="258.1617099399639" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<circle cx="900" cy="85" r="23" fill="#ffe2df" stroke="#17324d" stroke-width="2"/>
+<text x="900" y="91" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">50</text>
+<circle cx="800" cy="155" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="800" y="161" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">30</text>
+<circle cx="1000" cy="155" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="1000" y="161" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">70</text>
+<circle cx="755" cy="225" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="755" y="231" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">20</text>
+<circle cx="845" cy="225" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="845" y="231" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">40</text>
+<circle cx="950" cy="225" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="950" y="231" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">60</text>
+<circle cx="1055" cy="225" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="1055" y="231" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">80</text>
+<circle cx="980" cy="295" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="980" y="301" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">65</text>
+<text x="925" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#17324d">Promote right subtree; attach old left at 60.left</text>
+<line x1="880.8628432302296" y1="407.7581045131803" x2="832.4653579471218" y2="440.0230947019188" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="842.6641005886756" y="423.8905996075496" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">left</text>
+<line x1="919.9695922688626" y1="406.4111955822072" x2="981.5574351626396" y2="441.6042486643655" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="964.7635137157511" y="424.0077221232864" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<line x1="793.7365440327094" y1="471.2634559672906" x2="769.0918830920368" y2="495.90811690796323" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="767.4142135623731" y="483.5857864376269" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">left</text>
+<line x1="825.541666455899" y1="471.95454522461705" x2="846.7554350300317" y2="495.09683821458" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="850.1485507429653" y="483.5256917195985" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#17324d">right</text>
+<line x1="731.157665828062" y1="528.1896339203565" x2="722.1192618540141" y2="534.5165167021902" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="768.842334171938" y1="528.1896339203565" x2="777.8807381459859" y2="534.5165167021902" stroke="#425466" stroke-width="2" marker-end="url(#arrow)"/>
+<circle cx="900" cy="395" r="23" fill="#daf5e8" stroke="#17324d" stroke-width="2"/>
+<text x="900" y="401" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">70</text>
+<circle cx="810" cy="455" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="810" y="461" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">60</text>
+<circle cx="1005" cy="455" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="1005" y="461" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">80</text>
+<circle cx="750" cy="515" r="23" fill="#daf5e8" stroke="#17324d" stroke-width="2"/>
+<text x="750" y="521" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">30</text>
+<circle cx="865" cy="515" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="865" y="521" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">65</text>
+<circle cx="700" cy="550" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="700" y="556" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">20</text>
+<circle cx="800" cy="550" r="23" fill="#eaf2fb" stroke="#17324d" stroke-width="2"/>
+<text x="800" y="556" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#17324d">40</text>
+<text x="150" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#17324d">Each case starts from the original tree.</text>
+<text x="150" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#17324d">Unchanged branches are omitted</text>
+<text x="150" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#17324d">in the first two panels.</text>
+</svg>
