@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img" aria-labelledby="title description">
+  <title id="title">Before and after removing node 60 with one child</title>
+  <desc id="description">Before removal, node 70 points left to node 60, which points right to node 65. After removal, node 70 points left directly to node 65.</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#425466"/></marker></defs>
+  <rect width="900" height="360" fill="white"/>
+  <text x="225" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#17324d">Before removing 60</text>
+  <text x="675" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#17324d">After removing 60</text>
+  <text x="225" y="76" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#425466">branch aliases node70.left</text>
+  <line x1="211" y1="125" x2="128" y2="194" stroke="#425466" stroke-width="3" marker-end="url(#arrow)"/><text x="160" y="151" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#17324d">left</text>
+  <line x1="127" y1="239" x2="183" y2="270" stroke="#425466" stroke-width="3" marker-end="url(#arrow)"/><text x="152" y="269" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#17324d">right</text>
+  <circle cx="225" cy="110" r="31" fill="#eaf2fb" stroke="#17324d" stroke-width="3"/><text x="225" y="118" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#17324d">70</text>
+  <circle cx="100" cy="220" r="31" fill="#ffe2df" stroke="#a33a30" stroke-width="3"/><text x="100" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#17324d">60</text><text x="100" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#a33a30">removed</text>
+  <circle cx="215" cy="290" r="31" fill="#daf5e8" stroke="#2e7d5b" stroke-width="3"/><text x="215" y="298" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#17324d">65</text>
+  <text x="675" y="76" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#425466">node70.left now stores node65's address</text>
+  <line x1="661" y1="125" x2="578" y2="194" stroke="#425466" stroke-width="3" marker-end="url(#arrow)"/><text x="610" y="151" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#17324d">left</text>
+  <circle cx="675" cy="110" r="31" fill="#eaf2fb" stroke="#17324d" stroke-width="3"/><text x="675" y="118" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#17324d">70</text>
+  <circle cx="550" cy="220" r="31" fill="#daf5e8" stroke="#2e7d5b" stroke-width="3"/><text x="550" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#17324d">65</text>
+  <text x="675" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#17324d">Only the parent's left link changes; 65 remains the same node.</text>
+</svg>

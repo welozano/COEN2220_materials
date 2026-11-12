@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 290" role="img" aria-labelledby="title description">
+  <title id="title">Before and after removing leaf node 20</title>
+  <desc id="description">Before removal, node 30 has left child 20. After removal, node 30 has a null left link.</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#425466"/></marker></defs>
+  <rect width="760" height="290" fill="white"/>
+  <text x="190" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" fill="#17324d">Before removing 20</text>
+  <text x="570" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" fill="#17324d">After removing 20</text>
+  <text x="190" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#425466">branch aliases node30.left</text>
+  <line x1="176" y1="120" x2="103" y2="184" stroke="#425466" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="132" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#17324d">left</text>
+  <circle cx="190" cy="105" r="31" fill="#eaf2fb" stroke="#17324d" stroke-width="3"/><text x="190" y="113" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#17324d">30</text>
+  <circle cx="80" cy="205" r="31" fill="#ffe2df" stroke="#a33a30" stroke-width="3"/><text x="80" y="213" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#17324d">20</text>
+  <text x="80" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#a33a30">removed</text>
+  <text x="570" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#425466">node30.left = nullptr</text>
+  <circle cx="570" cy="105" r="31" fill="#eaf2fb" stroke="#17324d" stroke-width="3"/><text x="570" y="113" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#17324d">30</text>
+  <text x="570" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#425466">left → nullptr</text>
+</svg>

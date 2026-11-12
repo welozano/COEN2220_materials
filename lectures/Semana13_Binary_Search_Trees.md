@@ -626,16 +626,32 @@ Ya podemos localizar un ID y visitar sus descendientes. Retirar una muestra exig
 
 Supongamos que el personal retira la muestra 60. En el programa integrado de la **sección 7.2**, `main` solicitará `samples.remove(60)` para eliminar su entrada del índice. Separaremos ese trabajo en dos helpers privados:
 
-- **`removeAt` localiza el ID.** Recibe el enlace de entrada del subárbol y el ID solicitado. Devuelve `false` si no existe y `true` si logró retirarlo.
+- **`removeAt` localiza el ID.** Recibe `branch`, el pointer por el cual se entra al subárbol que debe examinar, y `id`, el ID solicitado. En la llamada inicial, `branch` representa `root`; en una llamada posterior puede representar un member como `node70.left`. Si la única ruta donde podría estar el ID llega a `nullptr`, devuelve `false` y no cambia enlaces. Si encuentra el ID, llama a `unlinkRoot(branch)`. Ese helper cambia el `root`, `left` o `right` que `branch` representa para que deje de señalar al node retirado y conserve los nodes que deban permanecer; después libera el node retirado. Cuando `unlinkRoot` termina, `removeAt` devuelve `true`.
 - **`unlinkRoot` reconecta y libera el node encontrado.** Recibe por referencia el enlace que lo señala. No busca un ID ni devuelve un valor; cambia ese enlace y libera un solo node.
 
 El nombre `unlinkRoot` se refiere a retirar la entrada **del subárbol recibido**, no necesariamente la root del árbol completo. Para retirar 60, esa entrada será el member `left` del node 70.
 
-El método público `remove` inicia el trabajo con `removeAt(root, 60)`. Al comparar con 50, el helper solicita `removeAt(node50.right, 60)`; al encontrar 70, solicita `removeAt(node70.left, 60)`. Esa última llamada encuentra el ID y pide `unlinkRoot(branch)`. Como `branch` es una referencia a `node70.left`, el segundo helper podrá cambiar ese mismo enlace. Es la aplicación de recibir un pointer por referencia que practicamos al insertar.
+Antes de pedir ese helper, fijemos su contrato. Su firma será `void unlinkRoot(Node *&branch)`: recibe por referencia el enlace que señala al node ya encontrado, lo reemplaza por el enlace que debe ocupar su lugar y libera el node retirado. `void` significa que no devuelve un valor; el resultado de la operación es el cambio de `branch`. Dentro de su cuerpo, un pointer local llamado `removed` conservará la dirección del node antes de cambiar ese enlace. La definición completa del cuerpo aparecerá en la **sección 5.5**, después de estudiar los tres casos que debe resolver. En el programa integrado de la sección 7.2, esa definición estará antes de `removeAt` dentro de `SampleIndex`.
+
+El algoritmo completo tiene dos etapas. Primero, `removeAt` sigue una única ruta BST hasta encontrar el ID o un enlace nulo; todavía no libera ni reconecta nada durante esa búsqueda. Si encuentra el ID, entrega a `unlinkRoot` el **enlace que lo señala**. Ese enlace puede ser `root` si se retira la entrada del árbol completo, o el member `left` o `right` de cualquier padre. La segunda etapa decide qué dirección reemplazará el valor que guardaba ese enlace:
+
+| Estado del node encontrado | Regla general de `unlinkRoot` | Por qué conserva el árbol |
+| --- | --- | --- |
+| No tiene hijo derecho | Asigna `branch = branch->left`. Si también falta el izquierdo, el enlace queda nulo; si existe, se promueve ese hijo izquierdo. | Ningún ID del subárbol izquierdo puede quedar a la derecha del node retirado. Ese subárbol ya cumple la regla BST y puede ocupar el mismo enlace. |
+| Tiene hijo derecho, pero no izquierdo | Asigna `branch = branch->right`. | El subárbol derecho ya contiene solo IDs mayores y puede ocupar el enlace sin perder nodes. |
+| Tiene ambos hijos | Conserva todo el subárbol derecho como reemplazo; busca su node más a la izquierda, conecta allí el antiguo subárbol izquierdo y luego asigna `branch = branch->right`. | El node más a la izquierda del derecho tiene su enlace `left` nulo y es mayor que todos los IDs del antiguo subárbol izquierdo. |
+
+La política de esta implementación es **promover la derecha siempre que exista**. No promueve el izquierdo si también existe el derecho; esa sería una variante simétrica posible, pero no es la que sigue este algoritmo ni la del programa de esta guía. El izquierdo se promueve únicamente cuando no hay derecho. Elegir una sola política evita que el lector tenga que adivinar cuál de los dos subárboles se conservará como entrada en cada retiro.
+
+En el caso de dos hijos, no se conecta el antiguo subárbol izquierdo directamente bajo la root del derecho. Primero se localiza `firstInRight`, el node más a la izquierda de ese derecho. Ese node tiene `left == nullptr`; por tanto, su enlace izquierdo está disponible. Además, cada ID del antiguo subárbol izquierdo es menor que el ID retirado y cada ID del subárbol derecho es mayor que él. Por transitividad, cada ID del antiguo izquierdo es menor que `firstInRight`. Conectar el antiguo izquierdo allí conserva el orden y no reemplaza otro subárbol.
+
+Los números del ejemplo no son una regla del algoritmo: 30 no es siempre el node que se conecta ni 60 es siempre el punto de unión. Al retirar 50 en nuestro árbol, el antiguo subárbol izquierdo comienza en 30 y el node más a la izquierda del derecho es 60, por eso la asignación concreta es `node60.left = node50.left`, que conecta 30 —junto con sus descendientes 20 y 40— bajo 60. Por la misma razón, 70 se vuelve la nueva root **en este ejemplo**: era el hijo derecho original de 50 y `branch` representaba `root`, de modo que `branch = branch->right` cambia `root` de 50 a 70. Si se retirara un node interno, la misma asignación cambiaría el `left` o `right` de su padre; no convierte la entrada del árbol completo necesariamente.
+
+El método público `remove` inicia el trabajo con `removeAt(root, 60)`. Al comparar con 50, el helper solicita `removeAt(node50.right, 60)`; al encontrar 70, solicita `removeAt(node70.left, 60)`. Esa última llamada encuentra el ID y pide `unlinkRoot(branch)`. Como `branch` es una referencia a `node70.left`, el segundo helper podrá cambiar ese mismo enlace. Es la aplicación de recibir un pointer por referencia que practicamos al insertar. Las secciones 5.2, 5.3 y 5.4 mostrarán el estado antes y después de cada caso que ese helper debe resolver.
 
 Si `removeAt` recibe un enlace nulo, retorna `false` antes de consultar un ID. Si el node existe pero no coincide, continúa por el hijo determinado por la regla BST.
 
-Este helper privado completo ubica la entrada y devuelve éxito o ausencia. `unlinkRoot`, explicado a continuación, modifica el enlace recibido y no devuelve una dirección.
+Este helper privado completo ubica la entrada y devuelve éxito o ausencia. `unlinkRoot`, cuyo cuerpo completo se presentará en la sección 5.5, modifica el enlace recibido y no devuelve una dirección.
 
 ```cpp
 bool removeAt(Node *&branch, int id)
@@ -650,13 +666,13 @@ bool removeAt(Node *&branch, int id)
 
 El `bool` indica si se retiró un ID. El cambio de dirección ocurre mediante `branch`, no mediante ese valor de retorno. Si no existe el objetivo, la llamada que llega a `nullptr` retorna `false` y las anteriores lo propagan sin modificar enlaces ni ejecutar `delete`.
 
-El gráfico siguiente muestra **tres casos independientes que parten del árbol original**. En los dos primeros paneles se omiten ramas que no cambian. El panel de dos hijos muestra el árbol completo antes y después; el rojo identifica el node que se retirará y el verde destaca conexiones resultantes.
-
-![Eliminación independiente de hoja 20, node 60 con un hijo y root 50 con dos hijos](assets/bst_deletion_cases.svg)
-
 ### 5.2 Caso 1: retirar una hoja
 
 En el árbol original, 20 tiene `left = nullptr` y `right = nullptr`. La búsqueda sigue 50, después 30 y finalmente 20. En la llamada que coincide, `branch` es una referencia a `node30.left`.
+
+El gráfico muestra solo el enlace que cambia en este caso. Las flechas son enlaces guardados; el naranja es el node que se retirará. Antes, `node30.left` señala a 20. Después de la operación, ese member queda nulo. No se muestran los demás nodes porque sus enlaces no cambian.
+
+![Caso hoja: antes y después de retirar 20 del enlace izquierdo de 30](assets/bst_remove_leaf_20.svg)
 
 Guardamos la dirección de 20 en `removed`. Como no tiene hijo derecho, asignamos a `branch` su hijo izquierdo, que también es nulo. La secuencia concreta es:
 
@@ -676,6 +692,10 @@ En otra ejecución desde los ocho IDs originales, 60 tiene un hijo derecho, 65, 
 
 El padre debe pasar a señalar 65. Los datos de 65 no se copian sobre 60: se cambia una dirección y se libera únicamente el node 60.
 
+El gráfico concentra el subárbol de 70 antes y después. El naranja identifica 60, que se retirará; el verde identifica el mismo node 65 que se conservará. Observa que el resultado no crea otro 65: únicamente cambia el valor guardado en `node70.left`.
+
+![Caso con un hijo: antes y después de retirar 60 y conectar 70 directamente con 65](assets/bst_remove_one_child_60.svg)
+
 ```text
 Before: node70.left -> node60; node60.left=nullptr; node60.right -> node65
 Save:   removed = address of node60
@@ -693,6 +713,10 @@ Volvamos al árbol original y retiremos 50. Su izquierda comienza en 30; su dere
 Seguiremos la estrategia de la sección 20.2 del libro: **promover todo el subárbol derecho y conectar el izquierdo al node más a la izquierda de ese subárbol derecho**. Aquí se promueve 70. No estamos copiando el ID de un sucesor sobre 50 ni promoviendo directamente el mínimo 60.
 
 `firstInRight` será un pointer local de recorrido. Comienza en 70 porque buscamos dentro del subárbol derecho. Sigue `left` hasta encontrar un node cuyo `left` es nulo; en estos datos llega a 60. Ese enlace libre será la conexión para la antigua izquierda de 50.
+
+El gráfico muestra antes y después del caso de dos hijos. En el estado inicial, 50 es el node naranja que se retirará. En el final, 70 es la nueva root y 30 queda conectado al lado izquierdo de 60, el node más a la izquierda del antiguo subárbol derecho. El verde señala los enlaces cuya función cambia; se omiten los descendientes 20 y 40 de 30, pero continúan conectados a 30.
+
+![Caso con dos hijos: antes y después de retirar 50, promover 70 y conectar 30 bajo 60](assets/bst_remove_two_children_50.svg)
 
 Los estados siguientes muestran todos los cambios de esa eliminación. Las flechas indican direcciones guardadas; `branch` es una referencia a `root` en este caso.
 
@@ -816,7 +840,9 @@ En el árbol original la altura es 3, por la ruta `50, 70, 60, 65`. Buscar 80 vi
 
 Un árbol **balanceado** mantiene su altura controlada respecto de su cantidad de nodes. No exige que todos los niveles estén llenos, ni que ambos subárboles tengan exactamente la misma cantidad de nodes.
 
-Una regla concreta de balance es la de un **AVL**: en cada node, las alturas de sus subárboles izquierdo y derecho difieren como máximo en uno. Para aplicar esa comparación puede asignarse altura `-1` al subárbol vacío y cero a una hoja. La condición se revisa en todos los nodes, no solo en la root. Otros árboles, como los **red-black trees**, usan reglas de mantenimiento diferentes para controlar su altura; no desarrollaremos esas reglas aquí.
+**AVL** es el nombre de una familia de BST que se mantiene balanceada; las letras vienen de los apellidos de sus autores, Adelson-Velsky y Landis. No es una instrucción de C++, ni una función que ya exista en nuestra clase. Un árbol AVL incorpora reglas y operaciones adicionales para revisar su forma después de insertar o eliminar; en esta sesión solo usaremos una de sus reglas para medir por qué una forma está más o menos balanceada. No implementaremos un árbol AVL.
+
+La regla AVL que observaremos dice que, en cada node, las alturas de sus subárboles izquierdo y derecho pueden diferir como máximo en uno. Para aplicar esa comparación puede asignarse altura `-1` al subárbol vacío y cero a una hoja. La condición se revisa en todos los nodes, no solo en la root. Otros árboles balanceados, como los **red-black trees**, usan reglas de mantenimiento diferentes para controlar su altura; tampoco desarrollaremos esas reglas aquí.
 
 Apliquemos esa regla al árbol que quedó después de eliminar 50 en la Parte 5. La nueva root es 70. Para comparar sus dos subárboles, calculamos cada altura **desde la entrada de ese subárbol**, sin contar el enlace que sale de 70:
 
