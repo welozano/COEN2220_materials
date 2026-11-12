@@ -38,7 +38,9 @@ Los IDs deben ser únicos porque una consulta o retiro por ID debe identificar u
 
 `main` será el cliente de `SampleIndex`. Pedirá `insert(id)`, `contains(id)`, `remove(id)`, `display()` y `clear()`. Las tres primeras operaciones devolverán un `bool`: si se agregó, si existe o si se eliminó, respectivamente. `display` mostrará recorridos sin cambiar datos; `clear` retirará todas las entradas. El destructor también liberará lo que quede al terminar la vida del objeto.
 
-Este fragmento presenta **solo la representación y el constructor**, dentro de la clase que completaremos. El programa ejecutable integrado aparece en la Parte 7; no hay que pegar métodos dentro de `main`.
+> **Nota de lectura:** las secciones iniciales presentan fragmentos de `SampleIndex` por separado para explicar cada responsabilidad antes de combinarla con las demás. El programa ejecutable completo, `sample_bst.cpp`, aparece en la **sección 7.2**. No hay que pegar métodos dentro de `main`.
+
+Este fragmento presenta **solo la representación y el constructor**, dentro de la clase que completaremos.
 
 ```cpp
 class SampleIndex
@@ -102,6 +104,8 @@ Todavía falta resolver cómo `insertAt` podrá cambiar un enlace del árbol cua
 En la lista de turnos de Registraduría de Semana 9, el método `addRegularTurn` agregaba un node al final. Si la lista estaba vacía, ejecutaba `head = newNode`. Ese método pertenecía a la clase y cambiaba directamente su member `head`. Para conectar el primer node de nuestro árbol podríamos hacer lo mismo: asignar su dirección directamente a `root`.
 
 Lo nuevo es que queremos delegar la conexión a un **helper**. Ya sabemos usar un pointer para acceder al node al que señala. Ahora necesitamos que el helper cambie **la dirección guardada en el propio pointer**, para conectarlo a un node. Ese pointer puede ser `root`, `left` o `right`. Primero distinguiremos modificar un node de cambiar un pointer; después veremos cómo recibir ese pointer por referencia permite al helper cambiar la variable original.
+
+Los fragmentos de esta sección formarán un programa independiente de demostración, `pointer_reference_demo.cpp`, que veremos completo en la **sección 2.4**. En ese programa, `main` contendrá las variables y llamadas de prueba; no es todavía el `main` del BST integrado de la sección 7.2.
 
 #### 2.3.1 La tarea que ya conocemos: conectar un node
 
@@ -313,7 +317,7 @@ Cada llamada resuelve una de tres posibilidades: encontró el enlace vacío, deb
 
 ### 2.6 Construir el árbol después de cada inserción
 
-Usaremos la secuencia controlada `50, 30, 70, 20, 40, 60, 80, 65`. Son IDs dummy para comparar trazas; el programa integrado permitirá registrar otros por consola. El primer ID recibido determina la root inicial: el algoritmo no calcula una mediana antes de comenzar.
+Usaremos la secuencia controlada `50, 30, 70, 20, 40, 60, 80, 65`. Son IDs dummy para comparar trazas; el programa integrado de la **sección 7.2** permitirá registrar otros por consola. El primer ID recibido determina la root inicial: el algoritmo no calcula una mediana antes de comenzar.
 
 Cada gráfico muestra **el árbol completo después de una inserción**, conservando las posiciones visuales de los nodes anteriores. Cada círculo representa un node y el número es su `sampleId`; las flechas son enlaces `left` o `right`, no llamadas de funciones. Se omiten los hijos nulos. Los nombres como `node50.left` en el texto identifican el member del node 50; no implican variables adicionales en el BST dinámico.
 
@@ -326,7 +330,7 @@ Registered nodes: 0
 
 #### 2.6.1 Inserción 1: registrar 50 en un árbol vacío
 
-`main` solicita `insert(50)`, que llama a `insertAt(root, 50)`. La condición `branch == nullptr` es verdadera porque `branch` representa `root`. La función crea el node con ID 50 y dos hijos nulos; `branch = added` cambia **root** a la nueva dirección y devuelve `true`.
+Cuando el programa integrado de la **sección 7.2** solicite `samples.insert(50)`, el método público llamará a `insertAt(root, 50)`. La condición `branch == nullptr` será verdadera porque `branch` representa `root`. La función creará el node con ID 50 y dos hijos nulos; `branch = added` cambiará **root** a la nueva dirección y devolverá `true`.
 
 Este es el primer estado conectado; todavía no hubo comparación entre IDs porque no existía otro node:
 
@@ -336,7 +340,7 @@ El cambio fue `root: nullptr -> dirección de node50`. Queda un node; `node50.le
 
 #### 2.6.2 Inserción 2: registrar 30 a la izquierda de 50
 
-`insertAt(root, 30)` encuentra 50: `30 < 50` es verdadero. Solicita `insertAt(node50.left, 30)`. En esa llamada, `branch` representa el enlace izquierdo de 50, que vale `nullptr`. Se crea 30, se conecta ese enlace y se retorna `true` a la llamada de 50; esta devuelve el resultado al método público y a `main`.
+`insertAt(root, 30)` encuentra 50: `30 < 50` es verdadero. Solicita `insertAt(node50.left, 30)`. En esa llamada, `branch` representa el enlace izquierdo de 50, que vale `nullptr`. Se crea 30, se conecta ese enlace y se retorna `true` a la llamada de 50; esta devuelve el resultado al método público y luego al cliente que solicitó la inserción.
 
 El gráfico añade 30 sin reemplazar el punto de entrada:
 
@@ -404,10 +408,10 @@ El gráfico final, que utilizaremos para búsqueda, recorridos y eliminación, i
 
 El cambio fue `node60.right: nullptr -> dirección de node65`. Quedan ocho nodes. En cada inserción se creó un solo node y se sustituyó un solo enlace nulo; no se reasignaron los enlaces usados para llegar hasta él.
 
-Para observar una ruta más larga, sigamos **la última inserción, 65**, cuando ya existen los otros siete IDs. La indentación siguiente indica llamadas anidadas, no enlaces del árbol. `branch aliases` identifica qué variable pointer está representando el parámetro por referencia en cada llamada.
+Para observar una ruta más larga, sigamos **la última inserción, 65**, cuando ya existen los otros siete IDs. En el programa integrado de la sección 7.2, esa solicitud vendrá de `main`; aquí la llamaremos simplemente el cliente. La indentación siguiente indica llamadas anidadas, no enlaces del árbol. `branch aliases` identifica qué variable pointer está representando el parámetro por referencia en cada llamada.
 
 ```text
-main -> insert(65) -> insertAt(root, 65)
+client -> insert(65) -> insertAt(root, 65)
     branch aliases root; it points to 50
     65 < 50: false; 65 > 50: true -> call using node50.right
         branch aliases node50.right; it points to 70
@@ -420,7 +424,7 @@ main -> insert(65) -> insertAt(root, 65)
             resume call at 60 -> return true
         resume call at 70 -> return true
     resume call at 50 -> return true
-insert(65) returns true -> main reports insertion success
+insert(65) returns true -> client receives insertion success
 ```
 
 La llamada inicial no reasigna `root` para avanzar por la ruta. Cada llamada nueva recibe **otro enlace**. El único enlace que cambia al agregar 65 es `node60.right`; las llamadas pendientes solo propagan `true`.
@@ -440,7 +444,7 @@ Insertar ya nos obligó a comparar un ID y elegir una rama. Para consultar si un
 
 ### 3.1 Qué cambia durante la búsqueda
 
-El personal necesita saber si la muestra 65 está registrada. En `main`, la llamada `samples.contains(65)` solicita esa consulta al objeto `samples`. Su método público `contains` recibe 65 en el parámetro `id` y devolverá un `bool`, que `main` usará para mostrar si encontró la muestra.
+El personal necesita saber si la muestra 65 está registrada. En el programa integrado de la **sección 7.2**, `main` solicitará esa consulta con `samples.contains(65)`. Su método público `contains` recibirá 65 en el parámetro `id` y devolverá un `bool`, que el cliente usará para mostrar si encontró la muestra.
 
 La búsqueda comienza con `Node *current = root`, porque debe considerar el árbol completo. Como en la prueba de los dos pointers de la Parte 2, **`current` y `root` son variables distintas que inicialmente señalan al mismo node**. No queremos cambiar la entrada del árbol, por eso aquí no necesitamos una referencia al pointer.
 
@@ -484,7 +488,7 @@ Para buscar 65 en el árbol original, los estados son los siguientes. Cada fila 
 Target: 65 | Current: 50 | Match: false | Decision: 65 > 50 | Next: right -> 70
 Target: 65 | Current: 70 | Match: false | Decision: 65 < 70 | Next: left  -> 60
 Target: 65 | Current: 60 | Match: false | Decision: 65 > 60 | Next: right -> 65
-Target: 65 | Current: 65 | Match: true  | Decision: return true | Next: main
+Target: 65 | Current: 65 | Match: true  | Decision: return true | Next: client
 ```
 
 Para buscar 55, las decisiones iniciales son similares, pero la última rama no tiene un node. Estos son todos los estados de esa consulta:
@@ -493,7 +497,7 @@ Para buscar 55, las decisiones iniciales son similares, pero la última rama no 
 Target: 55 | Current: 50      | Match: false | Decision: 55 > 50 | Next: right -> 70
 Target: 55 | Current: 70      | Match: false | Decision: 55 < 70 | Next: left  -> 60
 Target: 55 | Current: 60      | Match: false | Decision: 55 < 60 | Next: left  -> nullptr
-Target: 55 | Current: nullptr | Match: not evaluated | Decision: loop stops, return false | Next: main
+Target: 55 | Current: nullptr | Match: not evaluated | Decision: loop stops, return false | Next: client
 ```
 
 No se consulta `current->sampleId` cuando `current` es nulo: la condición del loop lo comprueba antes. Una hoja existente todavía debe compararse; que sus hijos sean nulos no significa que su propio ID esté ausente.
@@ -520,7 +524,7 @@ La tabla resume dónde se ubica la impresión respecto de esas llamadas. Se apli
 
 Definiremos tres helpers privados: `showInOrder` ejecutará inorder, `showPreOrder` ejecutará preorder y `showPostOrder` ejecutará postorder. Ninguno devuelve un valor: su resultado observable es la impresión de IDs.
 
-El recorrido empieza en `main` con `samples.display()`. El método público `display` solicita primero `showInOrder(root)` y espera a que termine **todo** ese recorrido. Después solicita `showPreOrder(root)` y, cuando este termina, `showPostOrder(root)`. Cada helper recibe inicialmente la dirección del node 50. Las definiciones completas siguientes van dentro de la zona privada de `SampleIndex`; el método público que las llama aparece integrado en la Parte 7.
+En el programa integrado que presentaremos en la **sección 7.2**, `main` creará el objeto `samples` y solicitará `samples.display()`. Ese método público solicitará primero `showInOrder(root)` y esperará a que termine **todo** ese recorrido. Después solicitará `showPreOrder(root)` y, cuando este termine, `showPostOrder(root)`. Con los ocho IDs iniciales del programa, cada helper recibirá primero la dirección del node 50. Las definiciones completas siguientes van dentro de la zona privada de `SampleIndex`; el método público que las llama aparecerá integrado en la sección 7.2.
 
 ```cpp
 void showInOrder(Node *current) const
@@ -620,7 +624,7 @@ Ya podemos localizar un ID y visitar sus descendientes. Retirar una muestra exig
 
 ### 5.1 Localizar no equivale a liberar
 
-Supongamos que el personal retira la muestra 60. En `main`, `samples.remove(60)` solicita eliminar su entrada del índice. Separaremos ese trabajo en dos helpers privados:
+Supongamos que el personal retira la muestra 60. En el programa integrado de la **sección 7.2**, `main` solicitará `samples.remove(60)` para eliminar su entrada del índice. Separaremos ese trabajo en dos helpers privados:
 
 - **`removeAt` localiza el ID.** Recibe el enlace de entrada del subárbol y el ID solicitado. Devuelve `false` si no existe y `true` si logró retirarlo.
 - **`unlinkRoot` reconecta y libera el node encontrado.** Recibe por referencia el enlace que lo señala. No busca un ID ni devuelve un valor; cambia ese enlace y libera un solo node.
@@ -777,9 +781,9 @@ void unlinkRoot(Node *&branch)
 }
 ```
 
-En el caso de 60 con un hijo, `unlinkRoot` cambia `node70.left` a 65 y regresa a `removeAt` de 60. Esa llamada devuelve `true` a la de 70, que lo devuelve a la de 50; el método público lo entrega a `main`. El ID 60 no se vuelve a consultar durante esos retornos.
+En el caso de 60 con un hijo, `unlinkRoot` cambia `node70.left` a 65 y regresa a `removeAt` de 60. Esa llamada devuelve `true` a la de 70, que lo devuelve a la de 50; el método público entrega ese resultado al cliente. El ID 60 no se vuelve a consultar durante esos retornos.
 
-Si el objetivo es la root 50, `removeAt(root, 50)` coincide en la primera llamada. `unlinkRoot` cambia directamente `root` a 70; no necesita un padre ficticio ni un caso especial en `main`. Si la root es el único node del árbol, el caso hoja cambia `root` a `nullptr` y la libera. Si tiene solo un hijo, ese hijo pasa a ser la root.
+Si el objetivo es la root 50, `removeAt(root, 50)` coincide en la primera llamada. `unlinkRoot` cambia directamente `root` a 70; no necesita un padre ficticio ni código especial fuera de la clase. Si la root es el único node del árbol, el caso hoja cambia `root` a `nullptr` y la libera. Si tiene solo un hijo, ese hijo pasa a ser la root.
 
 **Eliminar de un BST no significa balancearlo.** La reconexión preserva orden y acceso a los datos restantes, pero puede cambiar altura y forma. Lo estudiaremos en la próxima parte.
 
@@ -901,7 +905,7 @@ Ya sabemos retirar un ID y recorrer ambos lados de cada node. Al terminar el pro
 
 ### 7.1 Usar postorder para liberar sin consultar nodes ya eliminados
 
-El personal puede pedir vaciar el índice mediante `samples.clear()` desde `main`. También debe vaciarse cuando el objeto `samples` termine su vida: su destructor llamará al mismo método `clear`. Para no repetir el recorrido, definiremos un helper privado llamado `releaseNodes`: recibirá la dirección de entrada de un subárbol y liberará todos sus nodes en postorder. No devuelve un valor.
+El cliente podrá pedir vaciar el índice mediante `samples.clear()`; esa solicitud aparece en el menú del programa integrado de la **sección 7.2**. También debe vaciarse cuando el objeto `samples` termine su vida: su destructor llamará al mismo método `clear`. Para no repetir el recorrido, definiremos un helper privado llamado `releaseNodes`: recibirá la dirección de entrada de un subárbol y liberará todos sus nodes en postorder. No devuelve un valor.
 
 `clear()` iniciará el recorrido con `releaseNodes(root)`. **El helper recibe el pointer por valor y aun así puede liberar los nodes.** No hay contradicción con la Parte 2: `delete current` libera el objeto cuya dirección guarda `current`; no necesita cambiar la dirección guardada en `root`. Lo que la copia no permite es poner automáticamente `root` en `nullptr` asignando a `current`.
 
